@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,コンピュテーション式,コンピュテーション,computation,Midoliy">
+
+    <title>Midoliy |> F# - コンピュテーション式の概要</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css?20190311/">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>コンピュテーション式の概要</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#コンピュテーション式の概要" class="section-title"><b> コンピュテーション式の概要</b></a></div>
+            <div><a href="#構文の概要" class="section-title"><b> 構文の概要</b></a></div>
+            <div><a href="#組み込みコンピュテーション式" class="section-title"><b> 組み込みコンピュテーション式</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- -------------------------- -->
+            <!--  コンピュテーション式の概要  -->
+            <!-- -------------------=------ -->
+            <h1 id="コンピュテーション式の概要" class="section-title"> コンピュテーション式の概要</h1>
+            <div>
+                <br>
+
+                　F#のコンピュテーション式とは、「制御フローを構成する要素」と「バインディング」を使用して、順序付けされた計算を組み合わせることができる便利な式構文のことを言います。計算式の種類によっては、モナド・モノイド・モナド変換子・適用可能な関数を表現する方法として考えることができます。ただし、他の関数型言語の機能(例えば、Haskellの do記法 など)とは異なり、これらは単一の抽象化に結び付けられていません。また、状況依存の構文を実現するために、マクロやその他の形式のメタプログラミングにも依存しません。<br>
+                <br>
+
+                　<b>注)</b> コンピュテーション式は「モナド」と密接な関わりがありますが、そこについては本トピックでは掘り下げません。また、詳細な説明もしないつもりです。あくまでもごく簡単な入門内容程度の紹介に止めます。コンピュテーション式について詳しく知りたい方は、bleis先生の「<a href="http://bleis-tift.hatenablog.com/entry/computation-expression" class="ref" target="_blank">詳説コンピュテーション式</a>」が非常にわかりやすく情報をまとめてくださっていますので、そちらをご参照ください。<br>
+                <br>
+
+                　「計算処理」はさまざまな形式をとります。計算処理の最も一般的な形式は「シングルスレッド実行」です。これに対しては理解と修正が容易に行えます。ただし、計算処理のすべてがシングルスレッド実行のように単純なわけではありません。例をいくつかあげます。<br>
+
+                <!-- 計算式の例 -->
+                <table class="list-table">
+                        
+                    <tbody>
+                        <tr><td></td></tr>
+                        <tr><td>　非決定論的計算</td></tr>
+                        <tr><td>　非同期計算</td></tr>
+                        <tr><td>　エフェクトフル計算</td></tr>
+                        <tr><td>　生成計算</td></tr>
+                    </tbody>
+
+                </table><br>
+
+                　より一般的には、アプリケーションの特定の部分で実行しなければならない状況依存の計算処理があります。しかし、処理の抽象化をせずに状況依存のコードを書くということは、その状況とは違った外部に計算処理を「漏らす」ことが容易であるということを意味します。つまり、状況依存のコードが局所化せずに辺り一面に散らばってしまうということです(また、その可能性が非常に高くなります)。<br>
+                　この手の処理の抽象化は自分自身で定義し、記述することが難しい場合が多いため、F#には <span class="keyword">コンピュテーション式</span> と呼ばれる方法があらかじめ用意されました。「コンピューテーション式」ではなく、「コンピュテーション式」ですので間違えて覚えないようにしましょう。<br>
+                <br>
+
+                　コンピュテーション式は、状況依存の計算をエンコードするための統一された構文と抽象化されたモデルを提供します。<br>
+                　すべてのコンピュテーション式はビルダー型(= builder type)によって形成されています。ビルダー型はコンピュテーション式に使用できる操作を定義します。自作のコンピュテーション式を作成することもできますが、今回のトピックでは紹介しません。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ----------- -->
+            <!--  構文の概要  -->
+            <!-- ----------- -->
+            <h1 id="構文の概要" class="section-title"> 構文の概要</h1>
+            <div>
+                <br>
+
+                　すべてのコンピュテーション式は、以下のような形式の宣言をとります。<br>
+                
+                <pre class="code-font"><code class="fsharp">builder-expr { cexper }</code></pre>
+                <br>
+                
+                　この [ builder-expr ] には、コンピュテーション式を定義するビルダー型の型名を指定します。そして [ cexper ] に式の本体を記述します。例えば <span class="keyword">asyncコンピュテーション式</span> は次のようになります。<br>
+
+                <pre class="code-font"><code class="fsharp">// 以下の関数はサンプルのため, 動作はしません.
+let fetchAndDownload url =
+    async {
+        let! data = downloadData url
+
+        let processedData = processData data
+
+        return processedData
+    }</code></pre>
+                <br>
+
+                　上記のサンプルで気づいた方がいるかもしれませんが、[ <span class="keyword">let!</span> ] のようにコンピュテーション式内でのみ使用可能な特別な追加構文があります。以下がコンピュテーション式内でのみ利用できるキーワードの一覧です。<br>
+
+                <pre class="code-font"><code class="fsharp">expr { let! ... }
+expr { do! ... }
+expr { yield ... }
+expr { yield! ... }
+expr { return ... }
+expr { return! ... }
+expr { match! ... }</code></pre>
+                <br>
+                
+                　これらの各キーワードとその他の標準的なF#キーワードは、バッキングビルダー型で定義されている場合にのみ、コンピュテーション式で使用可能です。ビルダー型は、多くのF#構成要素(たとえば、ループや束縛)の動作をカスタマイズするための機能だと言えます。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ---------------------------- -->
+            <!--  組み込みコンピュテーション式  -->
+            <!-- ---------------------------- -->
+            <h1 id="組み込みコンピュテーション式" class="section-title"> 組み込みコンピュテーション式 </h1>
+            <div>
+                <br>
+
+                　F#のコアライブラリには、シーケンス式(seq)・非同期処理(async)・クエリ式(query)という3つの組み込みコンピュテーション式が定義されています。次節以降ではこれら3つの組み込みコンピュテーション式について紹介していきます。<br>
+                　また、コンピュテーション式は自作することも可能です。これについても次節以降で紹介したいと思います。<br>                
+
+                <br>
+            </div>
+            
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/03/24
+    </footer>
+</body>
+
+</html>

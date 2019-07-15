@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,測定単位,測量単位,単位,測定,計測単位,リソース管理,Midoliy">
+
+    <title>Midoliy |> F# - 測定単位</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css?20190311/">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>測定単位</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#測定単位の概要" class="section-title"><b> 測定単位の概要</b></a></div>
+            <div><a href="#サンプルでみる測定単位" class="section-title"><b> サンプルでみる測定単位</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ---------------- -->
+            <!--  測定単位の概要  -->
+            <!-- ---------------- -->
+            <h1 id="測定単位の概要" class="section-title"> 測定単位の概要</h1>
+            <div>
+                <br>
+
+                　F#の浮動小数点数値と符号付き整数値には、関連する測定単位を含めることができます。これは、通常、長さ・体積・質量などを示すために使用されます。単位付きの数を使用することで、算術関係に正しい単位があることをコンパイラが検証できるようになります。これは、コーディングをしていく上でのケアレスミスを防ぐのに役立ちます。<br>
+
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+[&lt;Measure&gt;] type unit-name [ = measure ]</code></pre>
+                <br>
+                
+                　測定単位を定義するためには <span class="keyword">[&lt;Measure&gt;]</span>属性 を必ず付与しなければなりません。また、[unit-name] には測定単位を定義します。例えば、長さの単位である 'cm' などがここに定義されます。また、[measure] には単位を含む式を指定することができます。単位を含む式では、整数のべき乗がサポートされており、単位間の積や商を示すことが可能です。<br>
+                　例えば、以下のように測定単位の定義をすることができます。<br>
+
+                <pre class="code-font"><code class="fsharp">[&lt;Measure&gt;] type cm           // センチメートルの定義
+[&lt;Measure&gt;] type ml = cm^3    // ミリリットル = 立方cm</code></pre>
+                <br>
+
+                　また、測定単位を利用するには、数値の後に「角かっこ(&lt;&gt;)+測定単位」として指定します。ちょうど以下のような形で指定します。<br>
+
+                <pre class="code-font"><code class="fsharp">[&lt;Measure&gt;] type cm           // センチメートルの定義
+let length = 1.0&lt;cm&gt;
+let volume = 10&lt;cm^3&gt;</code></pre>
+                <br>
+
+                　数値と &lt;単位&gt; の間にはスペースを入れてはいけないことに注意が必要です。また、測量単位の中で「&lt;cm^3&gt;」のように単位をべき乗したものなどを直接記述することもできます。また、以下のように測定単位を組み合わせることも可能です。<br>
+
+                <pre class="code-font"><code class="fsharp">[&lt;Measure&gt;] type km
+[&lt;Measure&gt;] type hour
+let KPH = 10&lt;km/hour&gt;</code></pre>
+                <br>
+                
+                　このように測定単位注釈は、リテラル型(floatやintなど)に対して、その値が表す単位情報を付与することが可能です。また、測定単位はコンパイル時の単位検査に使用されますが、実行時環境では保持されません。したがって、測定単位を使うことによるパフォーマンス低下は発生しないわけです。<br>
+                　単位が重要となる計算などでは、積極的に測定単位を利用し、バグの混入率低下や可読性を向上させていきましょう。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ------------------------ -->
+            <!--  サンプルでみる測定単位  -->
+            <!-- ------------------------ -->
+            <h1 id="サンプルでみる測定単位" class="section-title"> サンプルでみる測定単位 </h1>
+            <div>
+                
+                　以下は、簡単な測定単位のサンプルとなります。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/4aac5c2480d1f41ed0481b483e0e7aba.js?file=measure1.fs"></script></div>
+                <br>
+
+                　サンプルのように、測定単位情報を値に付与することにより、意図しない単位の値が指定できないようになります。コンパイル時にこの情報はわかるため、計算処理などのバグが早期に発見できるようになります。単位をもつ情報をやりとりさせる場合は、ぜひとも使用していきましょう。<br>
+
+                <br>
+            </div>
+            
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/03/23
+    </footer>
+</body>
+
+</html>

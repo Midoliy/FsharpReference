@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,プリミティブ,プリミティブ型,型,プログラミング,Midoliy">
+
+    <title>Midoliy |> F# - プリミティブ型</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>プリミティブ型</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#プリミティブ型とは">
+                <i class="fas fa-edit"> プリミティブ型とは</i>
+            </a></div>
+            <div><a href="#bool型">
+                <i class="fas fa-edit"> bool型</i>
+            </a></div>
+            <div><a href="#整数型">
+                <i class="fas fa-edit"> 整数型</i>
+            </a></div>
+            <div><a href="#浮動小数点数型">
+                <i class="fas fa-edit"> 浮動小数点数型</i>
+            </a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ------------------ -->
+            <!--  プリミティブ型とは  -->
+            <!-- ------------------ -->
+            <h1 id="プリミティブ型とは"><i class="fas fa-edit"> プリミティブ型とは</i></h1>
+            <div>
+                <br>
+                　プリミティブ型とは、F#言語で元から定義されている型のことを言います(≒ 組み込み型)。プリミティブ型は、F#の中でも最も基本的なもので、ほぼすべてのF#プログラムの基礎を形成します。
+                　また、F#のプリミティブ型は .NETプリミティブ型 のスーパーセットです。<br>
+                <br>
+            </div>
+            
+            <br>
+            
+            <!-- -------- -->
+            <!--  bool型  -->
+            <!-- -------- -->
+            <h1 id="bool型"><i class="fas fa-edit"> bool型</i></h1>
+            <div>
+                <br>
+                　bool型は、true / false の2種類の値のみをもつことができる型です。主に if式 などと一緒に使われます。<br>
+                　以下は簡単なサンプルとなります。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/000262177411b2976867934dc807a088.js?file=bool1.fs"></script></div>
+                <br>
+                　また、整数や浮動小数点数の数値から、bool値に変換するためのメソッドが .NET の Convertクラスに用意されています。<br>
+                　"0" のときに "false" となり、それ以外の数値の場合に "true" となります。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/000262177411b2976867934dc807a088.js?file=bool2.fs"></script></div>
+                <br>
+                　System.Boolean構造体(= bool) には、文字列を解析して bool値 に変換する [Parse] と [TryParse] という2つのstaticメソッドが用意されています。<br>
+                　正常に解析される文字列は "True" / "False" / "true" / "false" または、これらの大・小文字の組み合わせだけです。"0" や "1" などは正常に解析されません。<br>
+                <br>
+                　Parseメソッドは、解析できない文字列を引数に渡すと例外が発生します。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/000262177411b2976867934dc807a088.js?file=bool3.fs"></script></div>
+                <br>
+                
+                　TryParseメソッドは、解析できない文字列を引数に渡すと、返り値としてfalseが返されます。反対に、正常に解析できた場合は返り値としてtrueが返されます。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/000262177411b2976867934dc807a088.js?file=bool4.fs"></script></div>
+            
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ------- -->
+            <!--  整数型  -->
+            <!-- ------- -->
+            <h1 id="整数型"><i class="fas fa-edit"> 整数型</i></h1>
+            <div>
+                <br>
+
+                　整数型はその名もズバリ "整数値" を扱うための型です。整数型には扱える値の範囲によって、8種類の型が存在します。<br>
+                　扱える範囲は <br>
+            　　　<span class="keyword">sbyte &lt; int16 &lt; int &lt; int64</span><br>
+                の順に大きくなります。また正の数のみを扱える型も存在し、扱える範囲は <br>
+                　<span class="keyword">byte &lt; uint16 &lt; uint &lt; uint64</span><br>
+                の順に大きくなります。<br>
+                　今回は整数型の中でも特によく利用する <span class="keyword">int型</span> を中心に解説をしていきたいと思います。<br>
+                <br>
+                　以下は簡単なサンプルとなります。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/000262177411b2976867934dc807a088.js?file=int1.fs"></script></div>
+                <br>
+
+                　値の後ろに、'u' や 's', 'L' などの文字が書かれているのがわかるかと思います。これは<span class="keyword">リテラル</span> というもので、数値にこのリテラルを付与することで、その数字がなんの型かわかるようにしています。<br>
+                　整数型の場合、数値にリテラルもつけないと自動的に int型 と判別されるため、int型 で表現できる範囲を超える数値を let束縛 しようとするとエラーとなります。例えば下記はエラーとなります。<br>
+
+                <pre class="code-font"><code class="fsharp">let err = 4_294_967_294  // これはエラー
+
+// これを解決するには、サフィックスを付ける必要があります
+let ok = 4_294_967_294u</code></pre>
+                
+                　また、数値は好きな場所に _(アンダースコア) を入れて区切ることが可能です。主に3桁区切りにすることが多いと思います。もちろん2桁や5桁など、任意の位置で区切ることも可能です。
+                一切区切らずに(= アンダースコアを使わずに)数値を書いても何の問題もありません。<br>
+                <br>
+
+                　整数型は現実世界同様、算術演算(加減乗除)などの基本計算を行うことができます。また、ビット演算なども可能です。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/000262177411b2976867934dc807a088.js?file=int2.fs"></script></div>
+                <br>
+
+                　整数型にもbool型と同様に、文字列から数値を解析するstaticメソッドが用意されています。使い方もbool型とほとんど変わりません。整数型に解析できる文字列は数値のみの場合で、リテラル文字や、アンダースコアを含む文字列の場合、うまく解析できないことに注意する必要があります。<br>
+                　以下に簡単な使用例を示します。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/000262177411b2976867934dc807a088.js?file=int3.fs"></script></div>
+                <br>
+
+                　TryParseメソッドもbool型同様に、解析成功時に true, 失敗時に false が返ってきます。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/000262177411b2976867934dc807a088.js?file=int4.fs"></script></div>
+
+                <br>
+            </div>
+            
+            <br>
+            
+            <!-- --------------- -->
+            <!--  浮動小数点数型  -->
+            <!-- --------------- -->
+            <h1 id="浮動小数点数型"><i class="fas fa-edit"> 浮動小数点数型</i></h1>
+            <div>
+                <br>
+                　浮動小数点数型はいわゆる "実数値" を扱うための型です。ただし、現実世界の実数値とは違い、桁落ちや情報落ちなどの "誤差" が発生しうるので注意が必要です。<br>
+                扱える範囲によって、単精度浮動小数点型の <span class="keyword">single</span> , 倍精度浮動小数点型の <span class="keyword">double</span> という2種類の型が用意されています。<br>
+                　整数型と説明する内容があまり変わらないため、異なる機能を中心に紹介したいと思います。<br>
+                <br>
+                　浮動小数点数型は整数型とは違い、0除算やオーバーフローなどの無効な操作を行ったときに例外が発生しないようになっています。
+                浮動小数点数型には、"<span class="keyword">NaN</span>", "<span class="keyword">PositiveInfinity</span>", "<span class="keyword">NegativeInfinity</span>" という3つの特殊な値が定義されており、例外が発生しない代わりにこれらの値が返されます。<br>
+                <br>
+                　<b>NaN</b> とは, Not a Number(= 非数)の略で、浮動小数点演算が有効でなかった場合などに操作結果として返されます。たとえば、以下のようなときに NaN が返されます。<br>
+                <br>
+
+                <table class="list-table">                        
+                    <tbody>
+                        <tr><td></td></tr>
+                        <tr><td><span><b>0 を 0 で除算</b>した場合</span></td></tr>
+                        <tr><td><span><b>負の値の平方根を計算</b>しようとした場合</span></td></tr>
+                        <tr><td><span>Single.NaN(または、Double.NaN)を使って計算をしようとした場合</span></td></tr>
+                    </tbody>
+                </table>
+                <br>
+                <br>
+
+                　<b>PositiveInfinity</b> と <b>NegativeInfinity</b> は正の無限大と負の無限大を表す値です。これらの値は浮動小数点演算の結果の大きさが、変換先の型の表現範囲を超えている場合に発生します。<br>
+                また、0以外の数値を 0除算 した場合も発生します。<br>
+                　以下は、NaN / PositiveInfinity / NegativeInfinity が発生する場合のサンプルとなります。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/000262177411b2976867934dc807a088.js?file=float1.fs"></script></div>
+            
+
+                <br>
+            </div>
+            
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/17
+    </footer>
+</body>
+
+</html>

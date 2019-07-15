@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,クラス,class,Midoliy">
+
+    <title>Midoliy |> F# - クラス</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>クラス</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#クラスの概要" class="section-title"><b> クラスの概要</b></a></div>
+            <div><a href="#サンプルでみるクラス" class="section-title"><b> サンプルでみるクラス</b></a></div>            
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- -------------- -->
+            <!--  クラスの概要  -->
+            <!-- -------------- -->
+            <h1 id="クラスの概要" class="section-title"> クラスの概要</h1>
+            <div>
+                <br>
+
+                　クラス(= class)は、プロパティやメソッド、イベントなどのメンバを持つことができるオブジェクト型です。クラスはオブジェクト指向プログラミング(= OOP)の世界の概念です。通常、関数型プログラミングにはクラスの概念はありませんが、オブジェクト指向と関数型プログラミングとを組み合わせた OCaml から進化した F# には最初から備わっている機能です。<br>
+                　クラスは主に .NETプログラミング をする際に非常に役に立ちます。それは、基本的に.NETの世界はオブジェクト指向で形成されているためです。F#単体で開発する場合は、あまり必要とならないケースが多いですが、C# / VB.NETなどとやりとりする場合や、そもそも .NET の機能を利用する場合はクラスを必ず利用するため、クラスの概念を学ぶことはほぼ必須と言っても過言ではないでしょう。<br>
+                <br>
+
+                　この項では、クラスの概要レベルの内容についてご紹介します。詳細な内容については、別途項目を用意しているので、<a href="../../index.html#クラス" target="_blank" class="ref">そちら</a>をご参照ください。<br>
+                <br>
+
+                　以下はクラスの簡略化した構文になります。<br>
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+type class-name ( parameter-list ) = [ class ]
+    [ let-bindings ]
+    [ do-bindings ]
+    member-list
+    ...
+[ end ]
+                </code></pre>
+                <br>
+
+                　継承やインターフェース実装を考慮せず、オプションの機能を省くと上記のようなシンプルな構造であることがわかります。前述したとおり、詳細な記述方法に関しましては別途記事を用意いたしますので、ここではクラスの基本的な機能について入門するようにしてください。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/cec4079e7c2f72953f813809b2f42b93.js?file=class1.fs"></script></div>
+                <br>
+
+                <span id="note-description">
+                    <h3 class="section-title"> 冗語構文と軽量構文</h3>
+                </span>
+                　各要素の説明については次節で紹介しますので、今回は PersonBクラス の <span class="keyword">class - end</span> の部分に注目していきます。これは <span class="keyword">冗語構文</span> と呼ばれる記述方法です。通常は Personクラス のような方法(= <span class="keyword">軽量構文</span>)で記述をします。<br>
+                　冗語構文はあまり利用されない記述方法ですが、インデントによる影響を受けにくくなるという利点があります。また、class / struct / interface を明示的に表す際にも有効です。これら3種類の型は属性によっても明示的に分類することが可能ですが、冗語構文を利用した方が見た目に美しいコードになりやすいです。また、反対に軽量構文で統一しても問題ありません。いずれにせよ、どちらか片方(= 冗語構文 or 軽量構文)に統一した方がよいと思います。<br>
+                <br>
+                　余談ですが、あえて軽量構文のデメリットを言うならば、F#にあまり明るくない人が見たときに、それが class なのか struct なのか interface なのか一見しただけではわかりにくいというところです。誰がみてもわかりやすいコードというものが良いコードだと私は考えていますので、class / struct / interface の宣言においては冗語構文を採用するか、属性を必ず記述する方がいいと思います。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ---------------------- -->
+            <!--  サンプルでみるクラス  -->
+            <!-- ---------------------- -->
+            <h1 id="サンプルでみるクラス" class="section-title"> サンプルでみるクラス</h1>
+            <div>
+                <br>
+
+                　前節でクラスの簡単な構文を紹介しました。本節では簡易的なサンプルを利用して、実際の値と構文の説明がどう対応しているかを見ていきたいと思います。今回のサンプルは前節と同様の Person型 を利用していきたいと思います。<br>
+                　繰り返しとなりますが、下記は Person型 の定義となります。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/cec4079e7c2f72953f813809b2f42b93.js?file=class2.fs"></script></div>
+                <br>
+
+                　下記の表は内包している要素と構文の要素名とを対応付けたものとなります。ただし重複する内容のものに関しては省略しています。<br>
+                また、改めてクラスの宣言構文も記載しています。<br>
+                <br>
+
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+type class-name ( parameter-list ) = [ class ]
+    [ let-bindings ]
+    [ do-bindings ]
+    member-list
+    ...
+[ end ]
+                </code></pre>
+                <br>
+
+                <!-- 対応表 -->
+                <table class="list-table">
+
+                    <thead>
+                        <tr>
+                            <th><span>要素名</span></th>
+                            <th><span>対応するPerson型の要素</span></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>                        
+                        <tr><td>class-name</td>
+                            <td>Person</td></tr>
+
+                        <tr><td>parameter-list</td>
+                            <td>(name, age)</td></tr>
+
+                        <tr><td>let-bindings</td>
+                            <td>let name = name<br>let age = age</td></tr>
+                            
+                        <tr><td>do-bindings</td>
+                            <td>printfn "Person intput: name= %s, age= %d" name age</td></tr>
+                            
+                        <tr><td>member-list</td>
+                            <td>this.Name<br>this.Age </td></tr>
+                    </tbody>
+
+                </table>
+                <br>
+
+                　クラスの構成はやや複雑です。最初に [ class-name ] を指定し、その後 [ parameter-list ] を指定していることはすぐにわかると思います。[ parameter-list ] は <span class="keyword">tuple型</span> で受け取ることになるので覚えておきましょう。そのあと [ let-bindings ] と [ do-bindings ] が宣言されています。この箇所はクラス型の値を作成するときに必ず最初に実行されます。この [ parameter-list ] と [ let-bindings ] と [ do-bindings ] を 合わせて、<span class="keyword">コンストラクタ</span> といいます。また、クラス型の値を作成することを <span class="keyword">インスタンス化</span> といいます。頻出する単語なので必ず覚えましょう。<span class="keyword">new (parameter-list)</span> を使うことで追加のコンストラクタを定義することも可能です。<br>
+                　[ let-bindings ] の値を <span class="keyword">ローカルフィールド</span> または <span class="keyword">privateメンバ</span> などと呼びます。これは基本的に公開範囲が private であり、クラスの外部に公開されないために、そう呼ばれています。それとは逆に、[ member-list ] を利用することで、クラス外に公開するプロパティやメンバメソッドを定義することが可能です。[ member-list ] は [ let-bindings ] とは違い、デフォルトの公開範囲が public に設定されています。<br>
+                　クラスは非常に多機能な型です。また、クラスはオブジェクト指向プログラミングの世界の概念なため、関数型プログラミングに慣れ親しんだ方からすると理解することが難しいかもしれません。しかし、.NETプログラミングをする上では切っても切れない機能であるため、しっかりと使えるようにしましょう。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/17
+    </footer>
+</body>
+
+</html>

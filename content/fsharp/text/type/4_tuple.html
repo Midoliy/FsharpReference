@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,tuple,tuple型,Tuple,Tuple型,プログラミング,Midoliy">
+
+    <title>Midoliy |> F# - tuple型</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>tuple型</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#tuple型とは">
+                <i class="fas fa-edit"> tuple型とは</i>
+            </a></div>
+            <div><a href="#個々の値を取得する">
+                <i class="fas fa-edit"> 個々の値を取得する</i>
+            </a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ------------ -->
+            <!--  tuple型とは  -->
+            <!-- ------------ -->
+            <h1 id="tuple型とは"><i class="fas fa-edit"> tuple型とは</i></h1>
+            <div>
+                <br>
+                　tuple(= タプル)は名前はないけれども、複数の値を1セットにしたい場合に利用するデータ型です。特に、クラス型や値型をわざわざ作成する必要がない場合に利用されることが多いです。<br>
+                　tupleは 参照型でも値型でもどちらでも宣言できます。<br>
+                <br>
+
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+(element, ..., element)            // 参照型
+struct (element, ..., element)     // 値型</code></pre>
+                <br>
+
+                　以下は簡単な宣言のサンプルになります。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/3eebaa1f7f14ffb97bfad3ae99b06cee.js?file=tuple1.fs"></script></div>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ------------------ -->
+            <!--  個々の値を取得する  -->
+            <!-- ------------------ -->
+            <h1 id="個々の値を取得する"><i class="fas fa-edit"> 個々の値を取得する</i></h1>
+            <div>
+                <br>
+                　"パターンマッチ" を利用することで、tupleの個々の値を簡単に取得できます。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/3eebaa1f7f14ffb97bfad3ae99b06cee.js?file=tuple2.fs"></script></div>
+                <br>
+
+                　また、let束縛の際にもパターンマッチを利用してtupleを分解することが可能です。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/3eebaa1f7f14ffb97bfad3ae99b06cee.js?file=tuple3.fs"></script></div>
+                <br>
+
+                　tupleの要素の中で、1つの要素のみが必要な場合や、tupleの全要素ではなく一部の要素のみが欲しい場合があります。そのような場合には、ワイルドカード文字(= アンダースコア)を利用することで、不要な値を無視することが可能です。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/3eebaa1f7f14ffb97bfad3ae99b06cee.js?file=tuple4.fs"></script></div>
+                <br>
+
+                　2要素のtupleの場合は、fstとsnd関数を利用して、1つ目の要素だけ(または、2つ目の要素だけ)を取得することができます。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/3eebaa1f7f14ffb97bfad3ae99b06cee.js?file=tuple5.fs"></script></div>
+                
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/17
+    </footer>
+</body>
+
+</html>

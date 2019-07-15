@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,class,cast,キャスト,Midoliy">
+
+    <title>Midoliy |> F# - クラスキャスト</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>クラスキャスト</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#クラスキャストの概要" class="section-title"><b> クラスキャストの概要</b></a></div>
+            <div><a href="#サンプルでみるアップキャスト" class="section-title"><b> サンプルでみるアップキャスト</b></a></div>
+            <div><a href="#サンプルでみるダウンキャスト" class="section-title"><b> サンプルでみるダウンキャスト</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ---------------------- -->
+            <!--  クラスキャストの概要  -->
+            <!-- ---------------------- -->
+            <h1 id="クラスキャストの概要" class="section-title"> クラスキャストの概要</h1>
+            <div>
+                <br>
+
+                　F#のクラス(または構造体)は、オブジェクト階層内の型間で相互に変換できます。これはオブジェクト指向プログラミングにおいて重要なポリモーフィズムを実現するために必須といっても過言ではない機能です。キャストには <span class="keyword">アップキャスト</span> と <span class="keyword">ダウンキャスト</span> という2種類の方法があります。アップキャストとは、「派生クラスから基底クラスにキャスト」することを指します。また、ダウンキャストは「基底クラスから派生クラスにキャスト」することを指します。<br>
+                　アップキャストは、基底クラスが派生クラスの継承階層内にある限り、確実に機能します。しかし、ダウンキャストの場合は、オブジェクトが実際に正しい派生型の場合にのみ成功します。<br>
+                　F#では、アップキャストをする際には <span class="keyword">:></span> 演算子を利用し、ダウンキャストする際には <span class="keyword">:?></span> 演算子を利用します。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ------------------------------ -->
+            <!--  サンプルでみるアップキャスト  -->
+            <!-- ------------------------------ -->
+            <h1 id="サンプルでみるアップキャスト" class="section-title"> サンプルでみるアップキャスト</h1>
+            <div>
+                <br>
+                
+                　多くのオブジェクト指向言語では、アップキャストは暗黙的に行われます。しかし、F#では、規則が少し異なります。オブジェクト型のメソッドに引数を渡すと、アップキャストが自動的に適用されます。ただし、モジュール内のlet束縛されている関数の場合は、パラメータがフレキシブル型で宣言されていない限り、アップキャストは自動では行われません。<br>
+                　<span class="keyword">:></span> 演算子でのキャスト成功は、コンパイル時に型が決定されていることを意味し、静的にキャストが行われます。つまり、アップキャスト利用時にコンパイルが正常にされた場合、それは有効なキャストであり、実行時に失敗する可能性はありません。<br>
+                　アップキャストをしたい場合に、:> 演算子ではなく、<span class="keyword">upcast</span> 演算子を利用することも可能です。upcast演算子は以下のような構文となっています。<br>
+
+                <pre class="code-font"><code class="fsharp">upcast expression</code></pre>
+                <br>
+
+                　upcast演算を使用すると、コンパイラはコンテキストから変換先の型を推測しようとします。コンパイラが変換先の型を判別できない場合、コンパイルエラーとなります。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/c1e6daffa2a1f11f4d8663939a20f5cf.js?file=upcast1.fs"></script></div>
+
+                <br>
+            </div>
+            
+            <br>
+
+            <!-- ------------------------------ -->
+            <!--  サンプルでみるダウンキャスト  -->
+            <!-- ------------------------------ -->
+            <h1 id="サンプルでみるダウンキャスト" class="section-title"> サンプルでみるダウンキャスト</h1>
+            <div>
+                <br>
+                
+                　<span class="keyword">:?></span> 演算子でのキャスト成否は実行時に決定されます。つまり、動的にキャストが行われます。:?> 演算子でのキャストはコンパイル時にはチェックされません。しかし、実行時には指定された方へのキャストをしようと試みます。オブジェクトがキャスト先の型と互換性がある場合に、キャストが成功します。互換性がない場合には、<span class="keyword">InvalidCastException</span> が発生します。<br>
+                　ダウンキャストをしたい場合に、:?> 演算子ではなく、<span class="keyword">downcast</span> 演算子を利用することも可能です。downcast演算子は以下のような構文となっています。<br>
+                
+                <pre class="code-font"><code class="fsharp">downcast expression</code></pre>
+                <br>
+
+                以下は、ダウンキャストの簡単なサンプルになります。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/c1e6daffa2a1f11f4d8663939a20f5cf.js?file=downcast1.fs"></script></div>
+
+                <br>
+            </div>
+            
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/03/07
+    </footer>
+</body>
+
+</html>

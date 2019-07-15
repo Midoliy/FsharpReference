@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,recursive,再帰,再帰関数,相互再帰,相互再帰関数,末尾最適化,関数,Midoliy">
+
+    <title>Midoliy |> F# - 再帰関数</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>再帰関数</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#再帰関数の概要" class="section-title"><b> 再帰関数の概要</b></a></div>
+            <div><a href="#相互再帰関数" class="section-title"><b> 相互再帰関数</b></a></div>
+            <div><a href="#末尾最適化" class="section-title"><b> 末尾最適化</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ---------------- -->
+            <!--  再帰関数の概要  -->
+            <!-- ---------------- -->
+            <h1 id="再帰関数の概要" class="section-title"> 再帰関数の概要</h1>
+            <div>
+                <br>
+
+                　再帰関数とは、関数の中で自分自身の関数を呼び出す関数です。例えば、hoge関数の処理の中でhoge関数を呼び出している場合、それは再帰関数だと言えます。また、関数の中で自分自身の関数を呼び出すことを「<span class="keyword">関数の再帰呼び出し</span>」と言います。<br>
+                　再帰関数は <span class="keyword">let rec</span> キーワードを用いて宣言します。<br>
+                <br>
+
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+let rec function-name parameter-list = function-body
+                </code></pre>
+                <br>
+                
+                　構文は通常の関数宣言とほぼ変わりません。変わっている点は rec というキーワードがあるかどうかだけです。ただし、このキーワードがあるかどうかで再帰関数特有の機能が使えるかどうかが変わります。<br>
+                　以下はシンプルな再帰関数の例になります。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=recursive1.fs"></script></div>
+                <br>
+                
+                　サンプルからわかるとおり、fib関数の中でfib関数を呼んでいることがわかります。これが「関数の再帰呼び出し」です。再帰呼び出しをするだけなら通常の関数でも可能です。ただし、通常の関数では <a href="#相互再帰関数" class="ref">相互再帰関数</a> などの再帰関数特有の機能が使えなかったりします。<br>
+                　上記のように通常の再帰関数であれば、普通の関数でも再帰呼び出しが可能です。そのため、普通の関数で代用できてしまいます。しかしそれはオススメしません。普通は、ただの関数宣言を見ただけでは再帰呼び出しが発生するとは露ほども考えません。そのため、通常の関数で再帰呼び出しを利用していると驚いてしまいます。これは「<span class="keyword">驚き最小の原則</span>」に違反します。<br>
+                　そのため、「再帰呼び出しをこの関数では行っていますよ」という宣言をしておくことで可読性が向上します。別の章でもお伝えしていますが、可読性は正義です。自分しか迷惑がかからない個人開発では可読性の低いコードだろうが、何だろうが構いませんが、チーム開発においては致命的です。基本的にそのコードが何をしているのかがわかるようにキーワード等を適切に用いていくべきです。再帰関数を宣言するならば rec キーワードを必ずつけるように心掛けましょう。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- -------------- -->
+            <!--  相互再帰関数  -->
+            <!-- -------------- -->
+            <h1 id="相互再帰関数" class="section-title"> 相互再帰関数</h1>
+            <div>
+                <br>
+
+                　2つ以上の関数が相互に再帰的に呼び出し合うことがあります。つまり、「ある関数が別の関数呼び出しを行い、呼び出された関数がさらに次の別の関数呼び出しが最初の関数を呼び出していく」というような、円状の関数呼び出しを形成します。この円状の関数呼び出しを行う関数を<span class="keyword">相互再帰関数</span>と言います。<br>
+                　相互再帰関数を宣言するには、<span class="keyword">let rec</span>キーワード と <span class="keyword">and</span>キーワード を組み合わせる必要があります。以下のサンプルで確認してみましょう。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=mutually_recursive1.fs"></script></div>
+                <br>
+                
+                　サンプルでは、偶数かどうかを判定する even関数 と、奇数かどうか判定する odd関数 が相互に呼び合って一つの機能を実現しています。<br>
+                　相互再帰関数はあまり多用するような機能ではありませんが、存在を知らないとコードを読むときに頭を悩ませてしまうかもしれません。そうならないためにも、流暢に相互再帰関数を書けるようになる必要はありませんが、読める程度にはなっておいた方がよいでしょう。<br>
+                　
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ------------ -->
+            <!--  末尾最適化  -->
+            <!-- ------------ -->
+            <h1 id="末尾最適化" class="section-title"> 末尾最適化</h1>
+            <div>
+                <br>
+
+                　まず末尾最適化の話をする前に、以下の簡単な再帰関数を見ていきます。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=recursive2.fs"></script></div>
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=recursive2.cs"></script></div>
+                <br>
+
+                　上記のサンプルは int list の合計値を求めるための再帰関数 'sum' です。C#のfor文で同様の処理を書いた場合も同時に示しています。。F#でも同じことをfor文などの制御構文を用いることでも実現できますが、それでは関数型っぽくないですよね？そして何より、for文で書くよりも再帰関数は見た目が美しくなりやすいです。見た目の美しさは非常に重要です。醜悪なコードは読み手を不快にさせ、コードの理解をしようという気持ちを妨げます。また、読みにくいコードは3日後の自分を苦しめることもあります。そう、自分で書いたコードのはずなのに、その自分が読めなくなるのです。そのため、美しいコードを書くように心掛けるべきです。<br>
+                　では、いつでも上記のような通常の再帰関数で書けるのでしょうか？以下を見てみてください。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=recursive3.fs"></script></div>
+                <br>
+
+                　大き目の引数を sum関数 に渡すと何やら "Process is terminating due to StackOverflowException" というおぞましい例外が出力されて、アプリがダウンしてしまいました。<br>
+                　そうなのです。通常の再帰関数では、この StackOverflowException から逃れることはできないのです。この例外は再帰関数内の計算過程をスタックメモリに残しておいてしまうことが原因で発生します。スタックメモリは一般的に狭い領域しかありません。それをゴリゴリと使いまくるのが通常の再帰関数です。<br>
+                　では美しさを諦めて制御構文を使うしかないのでしょうか？いいえ、そんなことはありません。StackOverflowExceptionを回避するための方法が存在します。その手法を <span class="keyword">末尾最適化</span> といいます。これは途中の計算結果を一時保存して関数呼び出しの時に受け渡していくことによって例外を回避する方法になります。<br>
+                　末尾最適化された再帰関数 sum の例を見てみましょう。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=recursive4.fs"></script></div>
+                <br>
+
+                　無事、StackOverflowExceptionから逃れることができました。しかし、sum関数のインターフェースが変わってしまいました。これはあまり好ましくありません。sum関数は合計対象のlistだけ受け取ってくれるのが望ましい形(= あるべき姿)です。では、このあるべき姿にしましょう。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=recursive5.fs"></script></div>
+                <br>
+
+                　これでコードの美しさを保ちつつ、StackOverflowExceptionからも回避できました。<br>
+                　実際のところ、C/C++ や C# などに慣れ親しんでいる方からすると、制御構文でループ処理を書いたほうが万倍速く書けると思います。しかし、関数型プログラミングを追い求めるとなると、やはり末尾最適化されている再帰関数で解決することを優先するべきでしょう。また、初めてプログラミングを始めた方からすると再帰関数自体が意味不明かもしれません。そういったときは、簡単な再帰関数を書いてみて実際の動きをみることで、理解を深めることができると思います。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/23
+    </footer>
+</body>
+
+</html>

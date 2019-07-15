@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,class,inheritance,継承,Midoliy">
+
+    <title>Midoliy |> F# - 継承</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>継承</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#継承の概要" class="section-title"><b> 継承の概要</b></a></div>
+            <div><a href="#コンストラクタと継承" class="section-title"><b> コンストラクタと継承</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ------------ -->
+            <!--  継承の概要  -->
+            <!-- ------------ -->
+            <h1 id="継承の概要" class="section-title"> 継承の概要</h1>
+            <div>
+                <br>
+
+                　継承は、オブジェクト指向プログラミングで '<span class="keyword">is-aの関係</span>' を表します。つまり、あるクラスのサブタイプをモデル化するために使用されます。<br>
+                　クラスを継承させるには、<span class="keyword">inherit</span>キーワード を使用して、継承関係を指定します。基本的には以下のような形式となります。<br>
+
+                <pre class="code-font"><code class="fsharp">type MyDerived (...) = class    // 派生クラス(= 子クラス)の宣言
+    inherit MyBase(...)         // 基底クラス(= 親クラス)の指定
+end</code></pre>
+                <br>
+
+                　基となったクラスを「<span class="keyword">基底クラス</span>」、あるいは「<span class="keyword">親クラス</span>」と言います。また、基底クラスから継承したクラスを「<span class="keyword">派生クラス</span>」、あるいは「<span class="keyword">子クラス</span>」といいます。<br>
+                　派生クラスは '1つの基底クラスしか' 持つことができません。複数の基底クラスから継承することはできませんので、注意しましょう。また、基底クラスを指定しなかった場合、つまり通常のクラス宣言の場合は、暗黙的に System.Objectクラス を継承します。<br>
+                <br>
+
+                <h4 class="section-title">継承メンバ</h4>
+                　あるクラスを継承するとき、基底クラスのメンバとメソッドは派生クラスの直接のメンバであるかのように使用できます。しかし、let束縛された値とコンストラクタパラメータはprivateであるため、派生クラスから直接アクセスすることはできません。そこで <span class="keyword">baseキーワード</span> を利用して基底クラスのインスタンスを参照します。baseキーワードは自己識別子のように使われます。<br>
+                <br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ---------------------- -->
+            <!--  コンストラクタと継承  -->
+            <!-- ---------------------- -->
+            <h1 id="コンストラクタと継承" class="section-title"> コンストラクタと継承</h1>
+            <div>
+                <br>
+                
+                　「継承メンバ」で基底クラスのコンストラクタには直接アクセスできないと述べました。では、基底クラスで指定されているパラメータリストへはどのようにして引数を渡すのでしょうか？解決方法はとても簡単です。inheritキーワードとともに引数を渡すだけです。以下は簡単な例となります。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/c1e6daffa2a1f11f4d8663939a20f5cf.js?file=inherit1.fs"></script></div>
+
+                <br>
+            </div>
+            
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/03/05
+    </footer>
+</body>
+
+</html>

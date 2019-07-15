@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,パラメータ,引数,パラメータと引数,関数,Midoliy">
+
+    <title>Midoliy |> F# - パラメータと引数</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>パラメータと引数</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#パラメータと引数の概要" class="section-title"><b> パラメータと引数の概要</b></a></div>
+            <div><a href="#サンプルでみるパラメータ" class="section-title"><b> サンプルでみるパラメータ</b></a></div>
+            <div><a href="#名前付き引数" class="section-title"><b> 名前付き引数</b></a></div>
+            <div><a href="#オプションパラメータ" class="section-title"><b> オプションパラメータ</b></a></div>
+            <div><a href="#パラメータの参照渡し" class="section-title"><b> パラメータの参照渡し</b></a></div>
+            <div><a href="#パラメータ配列" class="section-title"><b> パラメータ配列</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ------------------------ -->
+            <!--  パラメータと引数の概要  -->
+            <!-- ------------------------ -->
+            <h1 id="パラメータと引数の概要" class="section-title"> パラメータと引数の概要</h1>
+            <div>
+                <br>
+
+                　関数にはパラメータと引数という考え方があります。関数宣言時にはパラメータを関数の利用側から受け取ることができます。また、関数の利用側はパラメータを受け取る関数に対して引数を渡すことができます。このパラメータと引数の違いは何でしょうか？<br>
+                　これは関数の宣言側と利用側での呼び方の違いでしかありません。関数の宣言側からするとまだ実体のない値を受け取ったことにして処理を宣言していきます。このときの "まだ実体のない値" のことを <span class="keyword">パラメータ(= 仮引数)</span> と呼びます。逆に関数の利用側から関数に渡す値のことを <span class="keyword">引数(= 実引数)</span> と呼びます。多くの場合、両方合わせて「引数」と呼びますが、厳密には言葉の定義が分けられていますので、注意しましょう。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- -------------------------- -->
+            <!--  サンプルでみるパラメータ  -->
+            <!-- -------------------------- -->
+            <h1 id="サンプルでみるパラメータ" class="section-title"> サンプルでみるパラメータ</h1>
+            <div>
+                <br>
+
+                　F#の関数はさまざまな値をパラメータとして受け取ることができます。その受け取り方も<span class="keyword">タプル形式</span>または<span class="keyword">カリー化形式</span>、あるいはその2つの組み合わせから指定することができます。<br>
+                　以下がそれぞれの受け取り方の違いを示した簡単なサンプルになります。<br>
+
+                <pre class="code-font"><code class="fsharp">// タプル形式
+member this.SomeMethod (param1, param2) = ...
+
+// カリー化形式
+let function1 param1 param2 = ...
+
+// タプル形式とカリー化形式の複合
+let function2 param1 (param2a, param2b) param3 = ...
+                </code></pre>
+                <br>
+
+                　クラスのメンバメソッドは通常、タプル形式でパラメータを指定します。これは .NETメソッド のパラメータがタプル形式として認識されるためです。クラスのメンバメソッドを .NET と一致させておくことで、他の言語との連携時に齟齬なく利用することが可能となります。F#は .NET言語ファミリの一員なので、この辺りも考慮した作りにしておくべきでしょう。<br>
+                　カリー化形式は、let束縛で作成される (いわゆる普通の) 関数で最もよく使用されます。また、F#ではタプル型をよく使う兼ね合いから、タプル形式とカリー化形式の複合したパラメータ指定も使われます。タプル形式とカリー化形式のどちらが特に優れているということはないのですが、部分適用や高階関数などとの親和性を考えて「メンバメソッドにはタプル形式」、「それ以外はカリー化形式」を使う、としてしまってもよいと思います。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=args1.fs"></script></div>
+                <br>
+                
+                　上記のサンプルでは、タプル形式のパラメータを持つメンバメソッドを紹介しています。また、他の.NET言語では引数なしのメソッドを提供していますが、F#では基本的には引数なしの関数・メソッドを提供していません。その代わりに unit型 を引数に持つメソッドを作成することで代用しています。<br>
+                　ここで重要なことは、.NETクラスのメンバメソッドを利用する際は必ずタプル型で引数が渡されてくるということです(ただし、引数が2つ以上の場合のみ)。そのため、関数の部分適用が利用できないなどのデメリットが発生することは意識しておかなければなりません。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=args2.fs"></script></div>
+                <br>
+
+                　上記のサンプルでは、カリー化形式のパラメータを持つ関数を紹介しています。カリー化については別ページで紹介するので詳細は省略させていただきます。ここでは「カリー化をすると部分適用とかの便利機能が使えるんだなー」くらいに留めておいていただければ大丈夫です。<br>
+                　F#などの関数型プログラミングでは、カリー化や高階関数などを駆使したコードを書きます。言葉の響きだけだと難しそうですが、使ってみると案外簡単なのであまり身構えずに学習を進めてください。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- -------------- -->
+            <!--  名前付き引数  -->
+            <!-- -------------- -->
+            <h1 id="名前付き引数" class="section-title"> 名前付き引数</h1>
+            <div>
+                <br>
+
+                　F#のメソッドの引数は、パラメータリスト内の順序と同じ順序で指定することも、パラメータ名の後に = (= 等号)を付けて値を指定することもできます。この等号を利用した引数の指定方法を<span class="keyword">名前付き引数</span>と呼びます。名前付き引数の場合、パラメータリストの順序とは違う順序で指定することも可能です。 <br>
+                　なぜ、通常の引数指定の方法以外に「名前付き引数」が必要なのでしょうか？それは一重に、<span class="class">可読性</span>と<span class="class">保守性</span>のためです。名前付き引数を利用することによって、APIの仕様変更に対してコードを修正しやすくなったり、そもそも関数やメソッドに対して「何を渡せばいいのか」が明確になります。これは、作成した人以外の人がコードを読むときなどに便利です。さらには、コード作成者である自分自身がコードを読みなおすときに、コードを思い出す負担が軽くなります。ただし、コード量が増加するため、あまり引数が多くないメソッドや関数の場合には使わないことが多いです。この辺りに関しては開発現場のコーディングルールに沿うようにしましょう。<br>
+                　名前付き引数は<span class="keyword">メンバメソッドにのみ使用できます</span>。let束縛関数・関数値・ラムダ式には使用できないので注意しましょう。<br>
+                <br>
+                　以下は、前節で利用したPersonクラスの簡易版を利用したサンプルになります。<br>　
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=args3.fs"></script></div>
+                <br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ---------------------- -->
+            <!--  オプションパラメータ  -->
+            <!-- ---------------------- -->
+            <h1 id="オプションパラメータ" class="section-title"> オプションパラメータ</h1>
+            <div>
+                <br>
+
+                　F#には指定してもしなくてもよい、<span class="class">省略可能なパラメータ</span>(= オプションパラメータ)を作成することが可能です。オプションパラメータはF#の <a href="../type/5_option.html" target="_blank" class="ref">option型</a> として解釈されるため、 match式を利用して処理を分岐させることができます。<br>
+                　名前付き引数と同様、オプションパラメータはメンバメソッドにのみ使用が許可されています。<br>
+                <br>
+
+                　オプションパラメータを使用するには、パラメータ名の先頭に "<span class="class">?</span>" を付与することでオプションパラメータとすることが可能です。ただしオプションパラメータの後に通常のパラメータを宣言することはできませんので、注意してください。
+                　オプションパラメータのデフォルト値を指定したい場合、<span class="class">defaultArg関数</span> を使用します。defaultArg関数は第一引数にオプションパラメータを取り、第二引数にデフォルト値を取ります。オプションパラメータを使う際によく使う関数なので覚えておきましょう。<br>
+                <br>
+
+                　以下は、簡易的なサンプルになります。<br>　
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=args4.fs"></script></div>
+                <br>
+
+                　サンプルをみてもらうとわかるとおり、インスタンス化の際にoption型を指定することが可能です。これは、別のメソッドや関数から受け取った option型 をそのまま使用したいときなどに非常に便利です。ただし、option型を指定する際は必ず名前付きで引数を指定しなければならないので注意しましょう。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ---------------------- -->
+            <!--  パラメータの参照渡し  -->
+            <!-- ---------------------- -->
+            <h1 id="パラメータの参照渡し" class="section-title"> パラメータの参照渡し</h1>
+            <div>
+                <br>
+
+                　F#では、パラメータを参照渡しすることができます。参照渡しには3つの指定方法があり、どのタイプを使うかによって挙動が異なります。<br>
+                <br>
+
+                <!-- 対応表 -->
+                <table class="list-table">
+
+                    <tbody>    
+                        <tr><td></td><td></td></tr>              
+
+                        <tr><td style="min-width:5em;"><b>inref&lt;'T&gt;</b></td>
+                            <td>読み取りだけが必要な場合に指定する(= readonly).<br>引数は初期化されていることが約束されている.</td></tr>
+
+                        <tr><td style="min-width:6em;"><b>outref&lt;'T&gt;</b></td>
+                            <td>書き込みだけが必要な場合に指定する(= writeonly).<br>引数は初期化されていることが約束されていない.</td></tr>
+
+                        <tr><td style="min-width:6em;"><b>byref&lt;'T&gt;</b></td>
+                            <td>読み込みも書き込みも必要な場合に指定する(= read-write).<br>引数は初期化されていることが約束されている.</td></tr>
+                    </tbody>
+
+                </table>
+                <br>
+
+                　値型の受け渡しは通常、値のコピーをすることで行われています。そのため、サイズの大きな値型を関数やメソッドに引数として指定するとパフォーマンスが悪化する恐れがあります。そういった際に参照渡しを利用します。また、参照型の値でも、渡したメソッドや関数の中で変更がされてしまう可能性があります。それらを防ぎたい場合にも参照渡し(特に inref&lt;'T&gt;)を利用します。<br>
+                　パラメータが参照渡しで指定されている場合、引数の指定をする際に必ず値に <span class="keyword">&</span> を付与しなければなりません。<br>
+                　以下は、参照渡しの簡易的な使い方のサンプルです。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=args5.fs"></script></div>
+                
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ---------------- -->
+            <!--  パラメータ配列  -->
+            <!-- ---------------- -->
+            <h1 id="パラメータ配列" class="section-title"> パラメータ配列</h1>
+            <div>
+                <br>
+
+                　プログラムを作成していると、printfn関数のように、異なった型の引数を任意の数受け取りたい場合があります。そういった場合に <span class="keyword">パラメータ配列</span>機能を利用します。<br>
+                　通常、そういった場合には関数やメソッドのオーバーロード機能を利用して作成しますが、使用可能なすべての型を考慮しつつ、さまざまな組み合わせを作成することは現実的ではありません。そのため、F#ではパラメータ配列という機能が用意されています。これは同じ.NET言語のC#にも同様に用意されている機能になります。<br>
+                　パラメータ配列を使いたい場合には、<span class="keyword">[&lt;ParamArray&gt;]</span> 属性を対象の引数に指定します。また、パラメータ配列はパラメータリストの一番最後に宣言しなければなりません。<br>
+                　以下は簡単な利用例となります。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=args6.fs"></script></div>
+                
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/21
+    </footer>
+</body>
+
+</html>

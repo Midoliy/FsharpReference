@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,インターフェース,ｲﾝﾀｰﾌｪｰｽ,インターフェイス,ｲﾝﾀｰﾌｪｲｽ,interface,Midoliy">
+
+    <title>Midoliy |> F# - インターフェース</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>インターフェース</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#インターフェースの概要" class="section-title"><b> インターフェースの概要</b></a></div>
+            <div><a href="#サンプルでみるインターフェース" class="section-title"><b> サンプルでみるインターフェース</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ------------------------ -->
+            <!--  インターフェースの概要  -->
+            <!-- ------------------------ -->
+            <h1 id="インターフェースの概要" class="section-title"> インターフェースの概要</h1>
+            <div>
+                <br>
+                
+                　インターフェース(= interface)は、クラスに実装させたい機能の宣言のみを行っているものです。そのため、宣言されているメンバはすべて abstract(= 抽象) です。つまり具体的なメンバの処理実体は定義されていません。もっと言ってしまえば、インターフェースは文字通り <span class="keyword">クラスの入出力部分の仕様を定義したもの</span> にすぎないわけです。<br>
+                　クラスに対してインターフェースを実装することで、そのクラスが何であれインターフェースに宣言されている機能については実装されていることが約束されていることになります。これはオブジェクト指向プログラミングの <span class="keyword">ポリモーフィズム</span>(= 多態性) を実現するために役立ちます。先に言っておくべきでしたが、インターフェースの概念は関数型プログラミングとは大きく異なるOOP世界の考え方です。OOPについては別記事にて紹介しようと思うので、ここでは簡易的な紹介に留めておきます。<br>
+                <br>
+
+                　以下は簡略化したインターフェースの構文になります。<br>
+
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+[&lt;attributes&gt;]
+type interface-name = interface
+    abstract member member1 : [ argument-types1 -> ] return-type1
+    abstract member member2 : [ argument-types2 -> ] return-type2
+    ...
+    abstract member memberN : [ argument-typesN -> ] return-typeN
+end
+
+// or
+
+[&lt;attributes&gt;]
+[&lt;Interface&gt;]
+type interface-name =
+    abstract member member1 : [ argument-types1 -> ] return-type1
+    abstract member member2 : [ argument-types2 -> ] return-type2
+    ...
+    abstract member memberN : [ argument-typesN -> ] return-typeN
+                </code></pre>
+                <br>
+
+                　構文を見てもらうとわかるとおり、インターフェースには<span class="keyword"> abstractなメンバ </span> しか宣言されていません。また、そのメンバに具体的な実装はしません。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/cec4079e7c2f72953f813809b2f42b93.js?file=interface1.fs"></script></div>
+                <br>
+                
+                　各要素については次節で紹介しますので、今節は IHeatインターフェース の <span class="keyword">interface - end</span> の部分に注目していきます。これは <span class="keyword">冗語構文</span> と呼ばれる記述方法です。また、IHeatB / IHeatC インターフェース のような方法(= オフサイドルールを利用する方法)を <span class="keyword">軽量構文</span> と呼びます。<br>
+                　また、冗語構文と軽量構文のメリット・デメリットについては <a href="./3_class.html#note-description" target="_blank" class="ref">こちら</a> をご参照ください。<br>
+                　インターフェースの宣言では、<span class="keyword">インターフェース名に I プレフィクスを付与すること</span>が一般的です。インターフェース名には必ず I プレフィクスを忘れずにつけるようにしましょう。<br>
+                　
+                <br>
+            </div>
+
+            <br>
+
+            <!-- -------------------------------- -->
+            <!--  サンプルでみるインターフェイス  -->
+            <!-- -------------------------------- -->
+            <h1 id="サンプルでみるインターフェース" class="section-title"> サンプルでみるインターフェース</h1>
+            <div>
+                <br>
+
+                　前節でインターフェースの簡単な構文を紹介しました。本節では簡易的なサンプルを利用して、実際の値と構文の説明がどう対応しているかを見ていきたいと思います。今回のサンプルは前節と同様の IHeat型 を利用していきたいと思います。<br>
+                　繰り返しとなりますが、下記は IHeat型 の定義となります。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/cec4079e7c2f72953f813809b2f42b93.js?file=interface2.fs"></script></div>
+                <br>
+
+                　下記の表は内包している要素と構文の要素名とを対応付けたものとなります。ただし重複する内容のものに関しては省略しています。<br>
+                　また、改めてインターフェースの宣言構文も記載しています。<br>
+                <br>
+
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+[&lt;attributes&gt;]
+type interface-name = interface
+    abstract member member1 : [ argument-types1 -> ] return-type1
+    abstract member member2 : [ argument-types2 -> ] return-type2
+    ...
+    abstract member memberN : [ argument-typesN -> ] return-typeN
+end
+                </code></pre>
+                <br>
+
+                <!-- 対応表 -->
+                <table class="list-table">
+
+                    <thead>
+                        <tr>
+                            <th><span>要素名</span></th>
+                            <th><span>対応するIHeat型の要素</span></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>                        
+                        <tr><td>interface-name</td>
+                            <td>IHeat</td></tr>
+
+                        <tr><td>member1</td>
+                            <td>Heat</td></tr>
+
+                        <tr><td>argument-types1</td>
+                            <td>double</td></tr>
+                            
+                        <tr><td>return-type1</td>
+                            <td>double</td></tr>
+                            
+                    </tbody>
+
+                </table>
+                <br>
+
+                　インターフェースの構成は抽象メンバの宣言のみなので、非常にシンプルです。<br>
+                　最初に [ interface-name ] を指定し、クラスや構造体に実装してもらいたいメンバを宣言すればよいわけです。メンバを宣言する際は必ず <span class="keyword">abstractキーワード</span> を付けなければならない点に注意が必要です。<br>
+                <br>
+                　インターフェースは.NETプログラミングにおいてポリモーフィズムを実現するための重要な型なので、きちんと使えるようになりましょう。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/17
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,try,invalidArg,例外処理,Midoliy">
+
+    <title>Midoliy |> F# - invalidArg関数</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css?20190311/">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>invalidArg関数</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#invalidArg関数の概要" class="section-title"><b> invalidArg関数の概要</b></a></div>
+            <div><a href="#サンプルでみるinvalidArg関数" class="section-title"><b> サンプルでみるinvalidArg関数</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- --------------------- -->
+            <!--  invalidArg関数の概要  -->
+            <!-- --------------------- -->
+            <h1 id="invalidArg関数の概要" class="section-title"> invalidArg関数の概要</h1>
+            <div>
+                <br>
+                
+                　invalidArg関数は、引数に関するF#例外を発生させるために利用されます。failwith関数の引数例外に特化したバージョンだと思ってもらって大丈夫です。<br>
+
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+invalidArg parameter-name error-message-string</code></pre>
+                <br>
+
+                　構文中の [parameter-name] には、通常、無効な引数が渡された引数名を含む文字列を指定します。[error-message-string] には、エラーメッセージを表す [文字列リテラル] または [string型の値] を指定します。ここで指定した [parameter-name] / [error-message-string] は、例外オブジェクトのプロパティとなります。<br>
+                　invalidArg関数によって発生した例外は、System.ArgumentException型と同等です。<br>
+
+                <br>
+            </div>
+
+            <br>
+            
+            <!-- ---------------------------- -->
+            <!--  サンプルでみるinvalidArg関数  -->
+            <!-- ---------------------------- -->
+            <h1 id="サンプルでみるinvalidArg関数" class="section-title"> サンプルでみるinvalidArg関数</h1>
+            <div>
+                <br>
+
+                　以下はinvalidArg関数の簡単な利用方法を示しています。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/06bcede7dff22227ed166756d7d30294.js?file=invalidArg1.fs"></script></script></div>
+
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/03/17
+    </footer>
+</body>
+
+</html>

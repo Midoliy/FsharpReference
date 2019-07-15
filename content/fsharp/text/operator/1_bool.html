@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,論理演算子,論理演算,bool演算,演算子,Midoliy">
+
+    <title>Midoliy |> F# - 論理演算子</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>論理演算子</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#論理演算子の概要" class="section-title"><b> 論理演算子の概要</b></a></div>
+            <div><a href="#サンプルでみる論理演算子" class="section-title"><b> サンプルでみる論理演算子</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ------------------ -->
+            <!--  論理演算子の概要  -->
+            <!-- ------------------ -->
+            <h1 id="論理演算子の概要" class="section-title"> 論理演算子の概要</h1>
+            <div>
+                <br>
+
+                　F#ではbool型の値を扱う演算子(= 論理演算子)がデフォルトで用意されています。論理演算子はbool演算子とも呼ばれており、AND演算 / OR演算 / NOT演算 という3つの基本的な演算によって構成されています。<br>
+                　以下が論理演算子の一覧となります。<br>
+                <br>
+
+                <!-- 論理演算子 -->
+                <table class="list-table">
+
+                    <thead>
+                        <tr>
+                            <th style="min-width:5em;"><span>論理演算子</span></th>
+                            <th><span>概要</span></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>                        
+                        <tr><td>not (論理否定)</td>
+                            <td>　NOT演算子.<br>
+                            　true ならば false に, false ならば true となります.</td></tr>
+
+                        <tr><td>|| (論理和)</td>
+                            <td>　OR演算子.<br>
+                            　いずれかの値が true の場合に true となります(= すべての値が false の場合にのみ false となります).</td></tr>
+
+                        <tr><td>&& (論理積)</td>
+                            <td>　AND演算子.<br>
+                            　すべての値が true の場合にのみ true となります(= いずれかの値が false の場合に false となります).</td></tr>
+                    </tbody>
+
+                </table>
+                <br>
+
+                　OR演算子とAND演算子は短絡評価(= ショートサーキット評価)として実行されます。これは左から順に論理演算を評価していき、結果が確定となった瞬間に右側に残っている評価を実施せずに結果を出す評価方法のことを言います。こうすることにより無駄な論理演算処理をしなくて済むわけです。<br>
+                
+                <br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- -------------------------- -->
+            <!--  サンプルでみる論理演算子  -->
+            <!-- -------------------------- -->
+            <h1 id="サンプルでみる論理演算子" class="section-title"> サンプルでみる論理演算子</h1>
+            <div>
+                <br>
+
+                　言葉で説明するよりも実際の動きを見ていただいたほうがイメージがつくと思いますので、以下のサンプルをご参照してください。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/8f02c0012756d7046e977a2e26bbd385.js?file=bool1.fs"></script></div>
+
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/17
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,class,val,自動実装プロパティ,明示的フィールド,Midoliy">
+
+    <title>Midoliy |> F# - valキーワード</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>valキーワード</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#valキーワードの概要" class="section-title"><b> valキーワードの概要</b></a></div>
+            <div><a href="#サンプルでみるvalキーワード" class="section-title"><b> サンプルでみるvalキーワード</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- --------------------- -->
+            <!--  valキーワードの概要  -->
+            <!-- --------------------- -->
+            <h1 id="valキーワードの概要" class="section-title"> valキーワードの概要</h1>
+            <div>
+                <br>
+
+                　valキーワードはクラスや構造体中で、初期化をしない値を宣言するために使用されます。この方法で宣言された値は、<span class="keyword">明示的フィールド</span>と呼ばれます。また、このvalキーワードは自動実装プロパティを宣言するためにも利用されます。<br>
+                
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+
+// 明示的フィールド
+[ attributes ]
+val [ mutable ] [ access-modifier ] field-name : type-name
+
+// 自動実装プロパティ
+[ attributes ]
+[ static ] member val [accessibility-modifier] PropertyName = initialization-expression [ with get, set ]
+                </code></pre>
+
+                　クラスや構造体でフィールドを定義する際の通常の方法は、let束縛を利用することです。しかし、let束縛はクラスコンストラクタ内で必ず初期化する必要があります。この初期化は常に可能であるとは限りません。また、初期化が常に必要であるとも限りません。そういった際の選択肢として明示的フィールドがあります。<br>
+                　明示的フィールド・自動実装プロパティにはアクセス修飾子を記述することでアクセス制限をすることができます。また、これらのデフォルトアクセシビリティは、<span class="keyword">public</span>となっています。
+                　また、初期化をしない明示的フィールドの場合には<span class="keyword">[&lt;DefaultValue&gt;]</span>属性を付与する必要があります。これを指定することで、明示的フィールドは型に合ったデフォルト値で自動的に初期化がなされるようになります。さらに、<span class="keyword">mutableキーワード</span>も同時に指定しなければならないので、そこにも注意が必要です。<br>
+                　いろいろとルールがありますが、これらのルールはコーディングに慣れれば、自然と意識せずに書けるようになるので安心ください。また、使い方を間違っていればIDEが教えてくれますので、その警告通りに修正すれば問題ありません。もし、使い方を完全に忘れてしまったら、このページに戻ってきていただくのも良いかと思います。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ----------------------------- -->
+            <!--  サンプルでみるvalキーワード  -->
+            <!-- ----------------------------- -->
+            <h1 id="サンプルでみるvalキーワード" class="section-title"> サンプルでみるvalキーワード</h1>
+            <div>
+                <br>
+                
+                　以下は簡単な明示的フィールドのサンプルになります。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/c1e6daffa2a1f11f4d8663939a20f5cf.js?file=val1.fs"></script></div>
+                <br>
+
+                　また、プライマリコンストラクタを持たないクラス・構造体宣言の場合、let束縛のようにコンストラクタ内での強制初期化を求めることが可能です。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/c1e6daffa2a1f11f4d8663939a20f5cf.js?file=val2.fs"></script></div>
+                <br>
+
+                　自動実装プロパティはよく使われる構文なので、すぐに覚えると思います。また、自動実装プロパティとは違い、自分でローカルフィールドを用意して作成したプロパティを<span class="keyword">フルプロパティ</span>とも言います。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/c1e6daffa2a1f11f4d8663939a20f5cf.js?file=val3.fs"></script></div>
+
+                <br>
+            </div>
+            
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/03/03
+    </footer>
+</body>
+
+</html>

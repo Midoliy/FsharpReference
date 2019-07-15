@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+     -->
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,関数,Function,プログラミング,Midoliy">
+
+    <title>Midoliy |> F# - 関数の基本</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>関数の基本</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#関数とは"><i class="fas fa-edit"> 関数とは</i></a></div>
+            <div><a href="#構文"><i class="fas fa-edit"> 構文</i></a></div>
+            <div><a href="#簡単な定義例"><i class="fas fa-edit"> 簡単な定義例</i></a></div>
+            <div><a href="#その他"><i class="fas fa-edit"> その他</i></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+            <!-- --------- -->
+            <!--  関数とは  -->
+            <!-- --------- -->
+            <h1 id="関数とは"><i class="fas fa-edit"> 関数とは</i></h1>
+            <div>
+                <br>
+                　関数は、あらゆるプログラミング言語において、プログラムの "<b>実行</b>" の基本となる単位です。他の言語の場合と同様に、F#の関数にも "関数名" と "関数の本体(= 処理内容)" があります。また、パラメータや引数を受け取ることもできます。<br>
+                　F#ではさらに、関数型プログラミングの構成要素もサポートしています。たとえば、関数を値として処理できたり、名前のない関数を式(= ラムダ式)として使用できたりします。また、関数合成を利用して新しい関数を作成できたり、カリー化関数や、関数の引数の部分適用による関数の暗黙の定義などもサポートされています。<br>
+                <br>
+                　関数を定義するには "letキーワード" を使用します。また、再帰関数の場合は "let recキーワード" を使用します。<br>
+                <br>
+            </div>
+            
+            <br>
+    
+            <!-- ------ -->
+            <!--  構文  -->
+            <!-- ------ -->
+            <h1 id="構文"><i class="fas fa-edit"> 構文</i></h1>
+            <div>
+                <br>
+                　F#の関数を定義する構文は以下のような形式になります。<br>
+
+                <pre class="code-font"><code class="fsharp">// 通常の関数宣言
+let [ inline ] function-name parameter-list [ : return-type ] = function-body
+
+// 再帰関数の宣言
+let rec function-name parameter-list = function-body
+                </code></pre>
+                <br>
+
+                <table class="list-table">
+                        <thead>
+                            <tr>
+                                <th><span>要素名</span></th>
+                                <th><span>内容</span></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td><span>let / let rec</span></td>
+                                <td><span>let束縛キーワード</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>function-name</span></td>
+                                <td><span>関数名</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>parameter-list</span></td>
+                                <td><span>パラメータ / 引数</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>function-body</span></td>
+                                <td><span>処理内容</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>inline</span></td>
+                                <td><span>オプション: 関数をinline化する場合, 追記</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>:return-type</span></td>
+                                <td><span>オプション: 返り値の型を明示的に指定する場合, 追記</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                <br>
+            </div>
+            
+            <br>
+    
+            <!-- ------------- -->
+            <!--  簡単な定義例  -->
+            <!-- ------------- -->
+            <h1 id="簡単な定義例"><i class="fas fa-edit"> 簡単な定義例</i></h1>
+            <div>
+                <br>
+                　関数の簡単な定義の例を見ていきましょう。<br>
+
+                <br>
+                
+                <h4>(1) まずはシンプルな関数宣言の例を見ていきます</h4>
+                <pre class="code-font"><code class="fsharp">// 引数を取らず、"Hello, World!!" と標準出力に表示する関数
+// 引数なしの場合は、() をparameter-list に指定します
+let showHello () = printfn "Hello, World!!"
+
+// 2つの引数をとって、足し算をする関数
+// parameter-list に a と b を指定しています
+let plus a b = a + b
+
+// 2つの引数をとって、引き算をする関数
+// inlineオプションを指定しています
+let inline sub a b = a - b
+                </code></pre>
+
+                <br>
+                
+                <h4>(2) 次に、返り値の型を指定している関数の宣言例を見ていきます</h4>
+                <pre class="code-font"><code class="fsharp">// 引数を取らず、"Hello, World!!" と標準出力に表示する関数
+// unit型を返すことを明示しています
+let showHello () : unit = printfn "Hello, World!!"
+
+// 2つの引数をとって、足し算をする関数
+// double型を返すことを明示しています
+let plus a b : double = a + b
+                </code></pre>
+
+                <br>
+                
+                <h4>(3) 次に、引数の値にも型指定をしている関数の宣言例を見ていきます</h4>
+                <pre class="code-font"><code class="fsharp">// 2つの引数をとって、足し算をする関数
+// int型を2つ引数にとり、int型を返すことを明示しています
+let plus (a:int) (b:int) : int = a + b
+
+// 引数の型指定は, 任意の引数にのみ適用することも可能
+// 今回は第一引数と返り値にのみ、明示的に型指定をしています
+let sub (a:int) b : int = a - b
+                </code></pre>
+
+                <br>
+            </div>
+
+            <!-- -------- -->
+            <!--  その他  -->
+            <!-- -------- -->
+            <h1 id="その他"><i class="fas fa-edit"> その他</i></h1>
+            <div>
+                <br>
+                　関数定義の方法には、let束縛以外にも <span class="keyword">do束縛</span> や <span class="keyword">ラムダ式</span> などの方法があります。詳細については、別の章で紹介したいと思います。<br>
+                <br>
+                　また、F#においては、関数はファーストクラス(= 第一級)の値です。もっと簡単に言うと、関数も "数値" や "文字列" のような基本的な <span id="keyword">値</span> と同じように扱うことができるということです。<br>
+                　そのため、F#では関数も数値も同じように let束縛 できるわけですね。すぐには、この便利さがわからないかもしれませんが、徐々にわかるようになると思います。<br>
+                　ここではその便利さの説明はしませんが、いずれどこかの章か項で紹介したいと思います。<br>
+                <br>
+            </div>
+            
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/17
+    </footer>
+</body>
+
+</html>

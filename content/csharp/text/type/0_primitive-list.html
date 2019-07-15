@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="C#,プリミティブ,型一覧,プログラミング,Midoliy">
+
+    <title>Midoliy｜C# - 型一覧</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="C#-TOPへ">
+                <div>型一覧</div>
+            </a>
+            <div>Midoliy｜C#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#組み込み型の一覧表">
+                <i class="fas fa-edit"> 組み込み型の一覧表</i>
+            </a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <h1 id="組み込み型の一覧表"><i class="fas fa-edit"> 組み込み型の一覧表</i></h1>
+            <div>
+                <br>
+                
+                　次の表はC#の組み込み型のキーワード一覧となっています。これは System 名前空間で定義済みの型の別名(= エイリアス)となっています。<br>
+                <br>
+                
+                <table class="list-table">
+
+                    <thead>
+                        <tr>
+                            <th><span>C#の型</span></th>
+                            <th><span>.NET型</span></th>
+                            <th><span>値範囲</span></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td><span>bool</span></td>
+                            <td><span>System.Boolean</span></td>
+                            <td><span>true / false</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>byte</span></td>
+                            <td><span>System.Byte</span></td>
+                            <td><span>0 ~ 255</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>sbyte</span></td>
+                            <td><span>System.SByte</span></td>
+                            <td><span>-128 ~ 127</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>short</span></td>
+                            <td><span>System.Int16</span></td>
+                            <td><span>-32,768 ~ 32,767</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>ushort</span></td>
+                            <td><span>System.UInt16</span></td>
+                            <td><span>0 ~ 65,535</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>int</span></td>
+                            <td><span>System.Int32</span></td>
+                            <td><span>-2,147,483,648 ~ 2,147,483,647</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>uint</span></td>
+                            <td><span>System.UInt32</span></td>
+                            <td><span>0 ~ 4,294,967,295</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>long</span></td>
+                            <td><span>System.Int64</span></td>
+                            <td><span>-9,223,372,036,854,775,808 ~ 9,223,372,036,854,775,807</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>ulong</span></td>
+                            <td><span>System.UInt64</span></td>
+                            <td><span>0 ~ 18,446,744,073,709,551,615</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>float</span></td>
+                            <td><span>System.Single</span></td>
+                            <td><span>±1.5x10−45 ~ ±3.4x1038</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>double</span></td>
+                            <td><span>System.Double</span></td>
+                            <td><span>±5.0×10−324 ~ ±1.7×10308</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>decimal</span></td>
+                            <td><span>System.Decimal</span></td>
+                            <td><span>±1.0x10-28 ~ ±7.9228x1028</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>char</span></td>
+                            <td><span>System.Char</span></td>
+                            <td><span>U+0000 ~ U+FFFF</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>string</span></td>
+                            <td><span>System.String</span></td>
+                            <td><span>文字列</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>object</span></td>
+                            <td><span>System.Object</span></td>
+                            <td><span>すべての型の親</span></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                
+                <br>
+                　表内のstringとobejct以外を除くすべての型を "<b>単純型</b>" と呼びます。
+
+
+                <br>
+            </div>
+            
+            <br>
+
+        </div>
+    </section>
+
+    <footer>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,構造体,struct,Midoliy">
+
+    <title>Midoliy |> F# - 構造体</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>構造体</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#構造体の概要" class="section-title"><b> 構造体の概要</b></a></div>
+            <div><a href="#サンプルでみる構造体" class="section-title"><b> サンプルでみる構造体</b></a></div> 
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- -------------- -->
+            <!--  構造体の概要  -->
+            <!-- -------------- -->
+            <h1 id="構造体の概要" class="section-title"> 構造体の概要</h1>
+            <div>
+                <br>
+                
+                　構造体(= struct)は、ごく軽量なデータメンバや非常に単純な振舞いのみを持つコンパクトなオブジェクト型です。また、クラスよりも効率的に動作する場面が多いです。<br>
+                　クラスと違い構造体は値型であるため、作成した値は <span class="keyword">スタックメモリ</span> に直接格納されます。フィールドや配列要素として使用される場合には、親の型にインラインで格納されます。また、構造体は値渡しのセマンティクスを持つため、頻繁にアクセス・コピーされるような小さなデータ集合体をまとめるのに向いています。<br>
+                <br>
+
+                　以下は構造体の構文になります。<br>
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+[&lt;attributes&gt;]
+type [ accessibility-modifier ] struct-name = struct
+    value-list
+    [ additional-constructor ]
+    member-list
+end
+
+// or
+
+[&lt;attributes&gt;]
+[&lt;Struct&gt;]
+type [ accessibility-modifier ] struct-name =
+    value-list
+    [ additional-constructor ]
+    member-list
+                </code></pre>
+                <br>
+
+                　構文を見てもらうとわかるとおり、構造体には<span class="keyword"> let束縛 も do束縛 も含めることができません</span>。また、独自の型のフィールドを再帰的に含めることができないことにも注意が必要です。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/cec4079e7c2f72953f813809b2f42b93.js?file=struct1.fs"></script></div>
+                <br>
+
+                　各要素については次節で紹介しますので、今節は PointA構造体 の <span class="keyword">struct - end</span> の部分に注目していきます。これは <span class="keyword">冗語構文</span> と呼ばれる記述方法です。また、PointB構造体 のような方法(= [&lt;Struct&gt;]属性を付与し、オフサイドルールを利用する方法)を <span class="keyword">軽量構文</span> と呼びます。また、[&lt;Struct&gt;] を付けなくとも構造体の軽量構文を利用することは可能です。属性の付与はあくまでもオプションなので覚えておきましょう。<br>
+                　また、冗語構文と軽量構文のメリット・デメリットについては <a href="./3_class.html#note-description" target="_blank" class="ref">こちら</a> をご参照ください。<br>
+                　
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ---------------------- -->
+            <!--  サンプルでみる構造体  -->
+            <!-- ---------------------- -->
+            <h1 id="サンプルでみる構造体" class="section-title"> サンプルでみる構造体</h1>
+            <div>
+                <br>
+
+                　前節で構造体の簡単な構文を紹介しました。本節では簡易的なサンプルを利用して、実際の値と構文の説明がどう対応しているかを見ていきたいと思います。今回のサンプルは前節と同様の Point型 を利用していきたいと思います。<br>
+                　繰り返しとなりますが、下記は Point型 の定義となります。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/cec4079e7c2f72953f813809b2f42b93.js?file=struct2.fs"></script></div>
+                <br>
+
+                　下記の表は内包している要素と構文の要素名とを対応付けたものとなります。ただし重複する内容のものに関しては省略しています。<br>
+                　また、改めて構造体の宣言構文も記載しています。<br>
+                <br>
+
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+[&lt;attributes&gt;]
+type [ accessibility-modifier ] struct-name = struct
+    value-list
+    [ additional-constructor ]
+    member-list
+end
+                </code></pre>
+                <br>
+
+                <!-- 対応表 -->
+                <table class="list-table">
+
+                    <thead>
+                        <tr>
+                            <th><span>要素名</span></th>
+                            <th><span>対応するPoint型の要素</span></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>                        
+                        <tr><td>struct-name</td>
+                            <td>Point</td></tr>
+
+                        <tr><td>value-list</td>
+                            <td>x:float<br>y:float</td></tr>
+
+                        <tr><td>additional-constructor</td>
+                            <td>new (x:float, y:float)</td></tr>
+                            
+                        <tr><td>member-list</td>
+                            <td>member this.getDistanceFrom (p:Point)</td></tr>
+                            
+                    </tbody>
+
+                </table>
+                <br>
+
+                　構造体の構成は<a href="./3_class.html" target="_blank" class="ref">クラス</a>に比べると単純ですが、<a href="./0_record.html" target="_blank" class="ref">レコード型</a>などと比べると複雑です。<br>
+                　最初に [ struct-name ] を指定しています。デフォルトコンストラクタはクラスとは違い、unit型の引数と決まっているため、明示的に指定することはできません。<br>
+                　また [ value-list ] には、構造体に属する値を宣言していきます。ここで注目すべきは <span class="keyword">valキーワード</span> です。今までは let束縛 などを利用してきましたが、構造体ではデフォルトコンストラクタがunit型となっている関係で利用できません。let束縛は値の初期化を強制しますが、valキーワードはそれとは逆に<span class="keyword">値の初期化を許容しません</span>。そのため、valキーワードで宣言された値は 0 または null で自動的に初期化されます。<br>
+                　構造体ではデフォルトコンストラクタが予約されているため、基本的に追加のコンストラクタ(= [ additional-constructor ]) を記述することになると思います。これはサンプルの通り、<span class="keyword">newキーワード</span> に対して引数に取りたい値をtuple型で宣言します。そして、その値を利用して、パブリックフィールドを初期化するようにします。<br>
+                　また、構造体はメンバを持つことができます。ただし、クラスとは異なり単純かつ軽量な処理となるように設計しなければなりません。構造体とクラスはできることが近いせいでどちらを使えばよいかわからなくなるかもしれませんが、Microsoftは明確にその<a href="https://docs.microsoft.com/ja-jp/dotnet/standard/design-guidelines/choosing-between-class-and-struct" target="_blank" class="ref">使い分けのガイドライン</a>を提示しています。要約すると、次の4つすべてに当てはまらない場合はクラスにするべきとのことです。<br>
+                <br>
+
+                <!-- struct を使うべき状況の条件 -->
+                <table class="list-table">
+                    <thead>
+                        <tr>
+                            <th><span>struct を使うべき状況の条件</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>                        
+                        <tr><td>プリミティブ型と同じように、単一の値を論理的に表す</td></tr>
+                        <tr><td>インスタンスのサイズが16byte未満</td></tr>
+                        <tr><td>変更されない</td></tr>
+                        <tr><td>頻繁にボックス化しない</td></tr>
+                    </tbody>
+                </table>
+                <br>
+                
+                　クラスや構造体、レコードなど似たような機能がありますが、それぞれに適した場所は違います。最初は使い分けの基準がわからないかもしれません。しかし、コーディングを積み重ね、失敗を積み重ねることによって徐々に使い分けられるようになると思います。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/17
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,リストパターン,配列パターン,listパターン,arrayパターン,ﾊﾟﾀｰﾝﾏｯﾁ,パターンマッチ,Midoliy">
+
+    <title>Midoliy |> F# - リスト/配列パターン</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>リスト/配列パターン</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#リスト/配列パターンの概要" class="section-title"><b> リスト/配列パターンの概要</b></a></div>
+            <div><a href="#サンプルでみるリストパターン" class="section-title"><b> サンプルでみるリストパターン</b></a></div>
+            <div><a href="#サンプルでみる配列パターン" class="section-title"><b> サンプルでみる配列パターン</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- --------------------------- -->
+            <!--  リスト/配列パターンの概要  -->
+            <!-- --------------------------- -->
+            <h1 id="リスト/配列パターンの概要" class="section-title"> リスト/配列パターンの概要</h1>
+            <div>
+                <br>
+
+                　リストパターンでは、listをいくつかの要素に分解することができます。リストパターン自体は、特定の数の要素を含むリストとだけ一致します。<br>
+                　配列パターンはリストパターンと非常に似ており、特定の長さの配列を分解するために使用できます。配列版のリストパターンと言っても過言ではありません。<br>
+                　次節以降で、各パターンの利用例を紹介していきます。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ------------------------------ -->
+            <!--  サンプルでみるリストパターン  -->
+            <!-- ------------------------------ -->
+            <h1 id="サンプルでみるリストパターン" class="section-title"> サンプルでみるリストパターン</h1>
+            <div>
+                <br>
+                
+                　以下は簡単なリストパターンのサンプルです。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/668b5e7cc9dc5e54852f3c3df6748291.js?file=list-pattern1.fs"></script></div>
+                <br>
+
+                　サンプルではワイルドカードパターンと組み合わせて値を破棄していますが、バインディングすることで右辺で値を利用することも可能です。<br>
+                　また、空のリストとパターンマッチするには <span class="keyword">[]</span> を利用することでマッチングさせることが可能です。<br>
+                
+                <br>
+            </div>
+            
+            <br>
+
+            <!-- ------------------------------ -->
+            <!--  サンプルでみる配列パターン  -->
+            <!-- ------------------------------ -->
+            <h1 id="サンプルでみる配列パターン" class="section-title"> サンプルでみる配列パターン</h1>
+            <div>
+                <br>
+                
+                　以下は簡単な配列パターンのサンプルです。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/668b5e7cc9dc5e54852f3c3df6748291.js?file=array-pattern1.fs"></script></div>
+                <br>
+
+                　サンプルを見ていただくとわかるとおり、ほとんどリストパターンと同様の記述方法です。入力値がリストから配列に変わったでしかありません。<br>
+                　パターンマッチとしては、リストパターンと配列パターンという2種類の名前ですが、ほぼ同一のものとして覚えてしまいましょう。<br>
+                
+                <br>
+            </div>
+            
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/26
+    </footer>
+</body>
+
+</html>

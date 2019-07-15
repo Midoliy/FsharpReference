@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,pipeline,パイプライン,関数合成,演算子,Midoliy">
+
+    <title>Midoliy |> F# - パイプラインと関数合成</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>パイプラインと関数合成</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#パイプラインと関数合成の概要" class="section-title"><b> パイプラインと関数合成の概要</b></a></div>
+            <div><a href="#サンプルでみるパイプラインと関数合成" class="section-title"><b> サンプルでみるパイプラインと関数合成</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ------------------------------ -->
+            <!--  パイプラインと関数合成の概要  -->
+            <!-- ------------------------------ -->
+            <h1 id="パイプラインと関数合成の概要" class="section-title"> パイプラインと関数合成の概要</h1>
+            <div>
+                <br>
+
+                　F#の関数は、すでに宣言している関数を複数組み合わせることで再構成することが可能です。この機能のことを <span class="keyword">関数合成</span>(= function composition) と言います。通常、F#の関数は極力小さな機能のみで構成されるように作成していきます。それらを関数合成することで複雑な処理を実現していくわけです。関数合成をするためには、関数合成演算子 "<span class="keyword">&gt;&gt;</span>" or "<span class="keyword">&lt;&lt;</span>" を利用します。<br>
+                <br>
+
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+let newFunctionA = function1 &gt;&gt; function2 &gt;&gt; ... &gt;&gt; functionN
+let newFunctionB = functionN &lt;&lt; ... &lt;&lt; function2 &lt;&lt; function1
+                </code></pre>
+                <br>
+
+                　newFunctionA関数 は 左から順に処理が流れてい行きます。逆に newFunctionB関数 は 右から順に処理が流れていきます。特段の理由がない限り通常は <span class="keyword">&gt;&gt;</span> が使われます。<br>
+                <br>
+                　また、F#の関数は<span class="keyword">パイプライン化</span>することができます。パイプライン化することによって、関数呼び出しを一連の連続した操作として連鎖させることができます。これは Linux などのターミナル操作に慣れて親しんでいる方にはお馴染みの機能だと思います。関数をパイプライン化するにはパイプライン演算子 "<span class="keyword">|&gt;</span>" or "<span class="keyword">&lt;|</span>" を利用します。<br>
+                <br>
+
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+let resultA = function1 |&gt; function2 |&gt; ... |&gt; functionN
+let resultB = functionN &lt;| ... &lt;| function2 &lt;| function1
+                </code></pre>
+                <br>
+
+                　パイプラインは関数合成とは違い、新しい関数を生成するわけではありません。その場で処理の連鎖をするための構文です。F#においては非常によく使われる機能なので、必ず使えるようになりましょう。<br>
+
+                <br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- -------------------------------------- -->
+            <!--  サンプルでみるパイプラインと関数合成  -->
+            <!-- -------------------------------------- -->
+            <h1 id="サンプルでみるパイプラインと関数合成" class="section-title"> サンプルでみるパイプラインと関数合成</h1>
+            <div>
+                <br>
+
+                　関数合成した場合もパイプライン化した場合も、最初の関数の結果を次の関数へと受け渡すような動作をします。サンプルを見てみるとそれがよくわかると思います。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/8f02c0012756d7046e977a2e26bbd385.js?file=pipeline1.fs"></script></div>
+                <br>
+
+                　これは実際どういった処理の流れになっているのでしょうか？もう少しわかりやすく例を分解してみましょう。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/8f02c0012756d7046e977a2e26bbd385.js?file=pipeline2.fs"></script></div>
+                <br>
+
+                　上記のサンプルは関数合成のみを分解したものですが、パイプライン化でも同じことが言えます。つまり、関数合成やパイプライン化は一時変数の省略や可読性向上のための機能というわけです。また、複数の関数をひとまとめにしたものに名前を付けることによって、何をしているかがわかりやすいコードとなります。<br>
+                　パイプライン化と関数合成を使えるか使えないかだけでコードの可読性はおろかコードの良し悪しにまで影響があるため、繰り返しとなりますが、必ず使えるようになりましょう。<br>
+
+
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/17
+    </footer>
+</body>
+
+</html>

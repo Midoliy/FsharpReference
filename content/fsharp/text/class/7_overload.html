@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,class,オーバーロード,演算子,Midoliy">
+
+    <title>Midoliy |> F# - 演算子のオーバーロード</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>演算子のオーバーロード</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#演算子のオーバーロードの概要" class="section-title"><b> 演算子のオーバーロードの概要</b></a></div>
+            <div><a href="#サンプルでみるオーバーロード" class="section-title"><b> サンプルでみるオーバーロード</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ------------------------------ -->
+            <!--  演算子のオーバーロードの概要  -->
+            <!-- ------------------------------ -->
+            <h1 id="演算子のオーバーロードの概要" class="section-title"> 演算子のオーバーロードの概要</h1>
+            <div>
+                <br>
+
+                　F#では、クラスやレコード型、グローバルレベルで算術演算子をオーバーロードすることが可能です。この章では、算術演算子をオーバーロードする方法を紹介します。<br>
+
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+// クラス/レコード型の算術演算子オーバーロード構文.
+static member (operator-symbols) (parameter-list) =
+    method-body
+
+// グローバルレベルの算術演算子オーバーロード構文.
+let [inline] (operator-symbols) parameter-list = function-body</code></pre>
+                <br>
+
+                　クラスの演算子に対するオーバーロードは静的(= static)である必要があります。+ や - などの単項演算子に対する演算子のオーバーロードでは、「演算子が単項演算子であり、二項演算子ではないこと」を示すために、operator-symbolに (<span class="keyword">~</span>: チルダ) を指定する必要があります。次の例は単項演算子のオーバーロードの簡単なサンプルです。<br>
+
+                <pre class="code-font"><code class="fsharp">static member (~-) (v: Vector)</code></pre>
+                <br>
+                
+                　上記のように単項演算子に対して (~) を付与していることがわかります。<br>
+                　算術演算子をオーバーロードすることでオリジナルの動作を定義することが可能となります。ただし、グローバルレベルの算術演算子をオーバーロードする際は影響範囲が広大となってしまうため、積極的には使用しないほうがよいでしょう。これは、F#が定義している算術演算子のデフォルト動作を変更することとほぼ同義であるため、実装した本人以外がコードを読んだときに「ハマる」可能性があります。現実的にはクラスの演算子オーバーロードくらいしか使わないと思いますし、そうであるべきです。やむを得ず、グローバルレベルでのオーバーロードをする際は詳細設計書などの真っ先に目にはいるものに明記しておくようにしましょう。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ------------------------------ -->
+            <!--  サンプルでみるオーバーロード  -->
+            <!-- ------------------------------ -->
+            <h1 id="サンプルでみるオーバーロード" class="section-title"> サンプルでみるオーバーロード</h1>
+            <div>
+                <br>
+                
+                　ところで、クラスの演算子のオーバーロードはどういった場面で使うのでしょうか？それはクラス自体を、さも数値などの値かのように扱いたいときに使用します。以下はベクトルを表すVectorクラスを使ったサンプルです。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/c1e6daffa2a1f11f4d8663939a20f5cf.js?file=operator1.fs"></script></div>
+                <br>
+
+                　サンプルからわかるように、演算子のオーバーロードを定義することで、通常では許容されていない演算をさせることが可能となります。今回の例で言うならば、普通ではスカラ型の値とVector型の値の掛け算は(デフォルトでは定義されていないため)許されていませんが、自分できちんと定義してあげることで機能するようになります。<br>
+                　クラスを利用する際は演算しのオーバーロードを利用することもそこそこあると思うので、覚えておくとよいでしょう。<br>
+
+                <br>
+            </div>
+            
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/03/06
+    </footer>
+</body>
+
+</html>

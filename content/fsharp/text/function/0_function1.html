@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>    
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">    
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,func,function,関数,Midoliy">
+
+    <title>Midoliy |> F# - 関数入門</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>関数入門</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#関数の概要" class="section-title"><b> 関数の概要</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ------------ -->
+            <!--  関数の概要  -->
+            <!-- ------------ -->
+            <h1 id="関数の概要" class="section-title"> 関数の概要</h1>
+            <div>
+                <br>
+
+                　F#の関数の簡易的な使い方についてはまずは <a href="../intro/3_func.html" target="_blank" class="ref">こちら</a> をご覧ください。<br>
+                <br>
+
+                　F#の関数は基本的にシンプルな処理内容で宣言することを求められます。これは関数型プログラミング(= FP)全体に言えることですが、FPの関数の基礎として "<span class="keyword">シンプルな処理を組み合わせて複雑な処理を実現する</span>" という考え方があります。そのため複雑な処理を宣言した関数は関数合成やパイプライン化した関数であることがほとんどです。LinuxやUnixのシェルコマンドを利用したことがある方は、シェルコマンドの連結を想像していただくとわかりやすいと思います。<br>
+                　また、関数型プログラミングの解決方法は、よくベルトコンベヤ式だと言われることがあります。これは関数を複数組み合わせてその結果を連鎖させていく姿がまるでベルトコンベヤに値を流しているように見えるからです。ベルトコンベヤ式に関数を連結できるようにするには、常に関数の INPUT / OUTPUT を意識して関数を宣言する必要があります。そのため、特化型の関数ではなく汎用的な関数を作成するという意識をもって関数を作成していきましょう。<br>
+                <br>
+
+                　それでは関数宣言の構文を見てみましょう。<br>
+
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+// 通常の関数宣言
+let [ inline ] function-name parameter-list [ : return-type ] = function-body
+
+// 再帰関数の宣言
+let rec function-name parameter-list = function-body
+                </code></pre>
+                <br>
+                
+                　すでに一度関数宣言については説明しているため、解説は省略します。不安な方は「<a href="../intro/3_func.html" target="_blank" class="ref">関数の基本</a>」を再度読み直してください。<br>
+                
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/18
+    </footer>
+</body>
+
+</html>

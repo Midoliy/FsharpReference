@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <!-- Normal -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,async,非同期,非同期処理,computation,Midoliy">
+
+    <title>Midoliy |> F# - 非同期処理</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css?20190311/">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>非同期処理</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#非同期処理の概要" class="section-title"><b> 非同期処理の概要</b></a></div>
+            <div><a href="#サンプルでみる非同期処理" class="section-title"><b> サンプルでみる非同期処理</b></a></div>
+            <div><a href="#let!を使った非同期束縛" class="section-title"><b> let!を使った非同期束縛</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ----------------- -->
+            <!--  非同期処理の概要  -->
+            <!-- ----------------- -->
+            <h1 id="非同期処理の概要" class="section-title"> 非同期処理の概要</h1>
+            <div>
+                <br>
+
+                　このトピックでは、非同期で、つまり他の作業の実行を妨げることなく処理を実行するためのF#機能について紹介します。<br>
+                　非同期処理を利用することで、GUIアプリで時間のかかる処理(= 重たい処理)を実行した際に、GUIが固まらずにユーザからの入力に反応できるアプリを実現することが可能となります。その他にも、複数の処理を同時実行して、全体の処理時間を短縮させたいときなどにも利用されます。非同期処理は現在のプログラムにおいては非常によく使われる機能なので、しっかりと扱えるようになりましょう。<br>
+                <br>
+
+                <pre class="code-font"><code class="fsharp">// [ 構文 ]
+async { expression }</code></pre>
+                <br>
+
+                　構文の「<span class="keyword">expression</span>」には、非同期的に実行したい処理を記述します。主にファイルI/O処理や、ネットワークを利用するような処理などがよく記述されます。ここで記述された非同期処理は、現在のスレッドをブロックしないように実行されます。これは、非同期処理だからといって必ず別スレッドが起ち上がるわけではないことを意味しています。時と場合によっては、同一スレッド内でタイマ割り込みなどを利用して非同期処理を実現する場合があります。とはいえ多くの場合、非同期処理はバックグラウンドスレッドで開始され、その他の処理は現在のスレッドで続行されます。<br>
+                　async { expression } を実行すると、戻り値として <span class="keyword">Async&lt;'T&gt;型</span> の値を得ることができます。'T の型は、expression内でreturnされた値の型となります。また、async { expression } の "expression" コードは、<span class="keyword">非同期ブロック</span> と呼ばれます。<br>
+                <br>
+                
+                　非同期的にプログラミングする方法はいろいろありますが、この<span class="keyword">Async</span>クラスはいくつかのシナリオをサポートするメソッドを提供しています。一般的には、非同期実行する1つ以上の処理オブジェクトを作成してから、トリガー機能を利用してそれらの処理を開始させます。トリガー機能にはさまざまな種類があり、「現在のスレッドで実行させる方法」・「バックグラウンドスレッドで実行させる方法」・「.NET Taskオブジェクトを利用して実行する方法」の中から状況にあったものを選択して利用することが可能です。例えば、現在のスレッドで非同期計算をさせるには、<span class="keyword">Async.StartImmediate</span>メソッドを利用します。これを利用することで、UIスレッドから非同期計算を開始しても、キー入力やマウス操作などのユーザ操作を処理するメインイベントループはブロックされないので、アプリケーションはユーザからの入力に対して応答し続けることが可能です。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ------------------------ -->
+            <!--  サンプルでみる非同期処理  -->
+            <!-- ------------------------ -->
+            <h1 id="サンプルでみる非同期処理" class="section-title"> サンプルでみる非同期処理</h1>
+            <div>
+                <br>
+
+                　以下は簡単な非同期処理のサンプルになります。<br>
+                <br>
+                <br>
+                
+                <h4 class="section-title">Async.StartImmediate</h4>
+                　現在のスレッドからすぐに非同期処理を実行します。UIが絡む非同期処理の場合、非同期処理内でUIを更新する必要があります。UIの更新は常にUIスレッドで実行しなければならないため、UI更新が絡む場合にはAsync.StartメソッドよりもAsync.StartImmediateメソッドを利用する方がより良い選択となります。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/4aac5c2480d1f41ed0481b483e0e7aba.js?file=async1.fs"></script></div>
+                <br>
+
+                　また、Async.StartImmediateメソッドは処理が完了するまで待機<span class="keyword">しません</span>。そのため、上記サンプルの出力は【hoge= 0】の一回目の出力のみで次の処理に行ってしまっています。<br>
+                <br>
+                <br>
+
+                <h4 class="section-title">Async.RunSynchronously</h4>
+                　現在のスレッドで非同期計算を実行し、その結果を待ちます。そのため、UIスレッドでAsync.RunSynchronouslyメソッドを利用すると、ユーザからの入力を受け取れなくなるので注意が必要です。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/4aac5c2480d1f41ed0481b483e0e7aba.js?file=async2.fs"></script></div>
+                <br>
+
+                　Async.StartImmediateメソッドとは違いAsync.RunSynchronouslyメソッドは、式内のすべての処理の実行完了を待機します。そのため、サンプルを見てみると【hoge= 0】から【hoge= 10】まですべての出力がされていることがわかります。結果を待つ必要がある場合は、基本的にこのAsync.RunSynchronouslyメソッドを利用します。ただし、GUIプログラミングをする際にはUIスレッドの存在を常に意識しなければならないので、注意しましょう。<br>
+                <br>
+                <br>
+
+                <h4 class="section-title">Async.Start</h4>
+                　スレッドプールで非同期処理を開始しますが、処理の結果を待機しません。そのため、処理を開始したらすぐに次の処理へ移行します。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/4aac5c2480d1f41ed0481b483e0e7aba.js?file=async3.fs"></script></div>
+                <br>
+
+                　サンプルの出力結果を見てもらうとわかるとおり、【### start】の直後に【### end】の処理が呼ばれていることがわかります。また、Console.ReadLineでメインメソッドの終了を阻止しないと、【hoge= xxx】が出力されずに、即座にプログラムが終了してしまいます。これは、非同期ブロックの処理がまったく別のスレッドで実行されており、なおかつ処理の結果を一切待機していないためです。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ----------------------- -->
+            <!--  let!を使った非同期束縛  -->
+            <!-- ----------------------- -->
+            <h1 id="let!を使った非同期束縛" class="section-title"> let!を使った非同期束縛 </h1>
+            <div>
+                
+                　非同期処理は、同期的な処理と非同期的な処理を組み合わせた処理の結果を返すように設計された長い処理のまとまりです。<span class="keyword">let!</span>束縛は、通常のlet束縛ではなく、非同期的な式を束縛するために利用されます。let!束縛を利用することによって、非同期処理の結果を待機することができ、結果が返ってきた段階で残りの非同期ブロック内の処理の実行が再開されます。<br>
+                　以下の簡単なサンプルを確認してみましょう。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/4aac5c2480d1f41ed0481b483e0e7aba.js?file=async4.fs"></script></div>
+                <br>
+
+                　fetchAsyncA関数とfetchAsyncB関数の違いは、非同期ブロック内で【let!】を利用しているか【let】を利用しているかの違いのみですが、結果は大きくことなります。let!を利用することによって、非同期処理の結果を待機することができ、Async&lt;'T&gt;型から'T型の結果のみをアンラップして取得できていることがわかります。もっと端的に言ってしまえば、let!束縛を使うだけで、<span class="keyword">Async&lt;'T&gt; -> 'T の変換</span>が簡単に行えるということです。最初のうちはあまり難しく考えずに、非同期ブロックの中で非同期処理を同期的に行いたい場合には【let!束縛】を利用すれば良いと覚えておいても差し支えないと思います。さらに深く知りたくなったときは、コンピュテーション式という魔境の勉強をすればよいのです。<br>
+
+                <br>
+            </div>
+            
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/03/24
+    </footer>
+</body>
+
+</html>

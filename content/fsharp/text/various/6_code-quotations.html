@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,コードクォート,コードクォート式,quotations,クォート,quote,Midoliy">
+
+    <title>Midoliy |> F# - コードクォート</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css?20190311/">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>コードクォート</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#コードクォートの概要" class="section-title"><b> コードクォートの概要</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- -------------------- -->
+            <!--  コードクォートの概要  -->
+            <!-- -------------------- -->
+            <h1 id="コードクォートの概要" class="section-title"> コードクォートの概要</h1>
+            <div>
+                <br>
+
+                　コードクォート(= code quotations)は、F#コードを表す抽象構文木を生成するための機能です。<br>
+                　コードクォートを利用することによって、F#のコード生成や、F#のコードから他の言語のコードを生成することが可能となります。<br>
+
+                <br>
+                
+                
+                <h4 id="コードクォート式" class="section-title"> コードクォート式</h4>
+                　引用符で囲まれた式(= コードクォート式)は、プログラムの一部としてコンパイルされるのではなく、F#の式を表すオブジェクトにコンパイルされる で区切られたF#式です。コードクォート式は、「型情報付き」または「型情報なし」のいずれかの方法でマークすることができます。<br>
+                　型情報を含める場合は、" <span class="keyword">&lt;@ ~ @&gt;</span> " を使用してコードクォート式を区切ります。<br>
+                　型情報が必要ない場合には、" <span class="keyword">&lt;@@ ~ @@&gt;</span> " を使用してコードクォート式を区切ります。<br>
+                　また、コードクォート式を利用するためには、<span class="keyword">Microsoft.FSharp.Quotations</span> 名前空間を open する必要があります。<br>
+                <br>
+                　次のコードは、型付きコードクォート式と型なしコードクォート式の簡単なサンプルになります。<br>    
+
+                <pre class="code-font"><code class="fsharp">open Microsoft.FSharp.Quotations
+open FSharp.Quotations.Evaluator
+
+let expr0 : Expr&lt;int&gt; = &lt;@ 1 + 1 @&gt; // 型付きコードクォート式は Expr&lt;'a&gt;型
+let expr1 : Expr = &lt;@@ 1 + 1 @@&gt;    // 型なしードクォート式は Expr型
+
+printfn "%d" (expr0.Evaluate())         // output: 2
+printfn "%A" (expr1.EvaluateUntyped())  // output: 2</code></pre>
+                <br>
+                
+                　コードクォート式はそのままでは処理の内容を実行できないため、<a href="https://www.nuget.org/packages/FSharp.Quotations.Evaluator/" class="ref">FSharp.Quotations.Evaluator</a> などのライブラリを利用します。今回利用したFSharp.Quotations.Evaluatorライブラリでは、Expr&lt;'a&gt;型の場合にEvaluate()を、Expr型の場合にEvaluateUntyped()を利用することでコードクォート式の中身を実行することが可能です。<br>
+                <br>
+
+                　コードクォート式には完全な式を含める必要があります。例えば、let束縛を利用する場合は、let束縛された名前の定義と、その束縛を使用する追加の式の両方が必要です。そのため、以下のコードクォート式は無効となります。<br>
+
+                <pre class="code-font"><code class="fsharp">// 以下はエラー
+&lt;@ let f x = x + 1 @&gt;</code></pre>
+                <br>
+
+                　以下のようにすることで、有効な表現となります。
+
+                <pre class="code-font"><code class="fsharp">// 有効な表現(1): in句の利用
+&lt;@ let f x = x + 1 in f 20 @&gt;
+
+// 有効な表現(2): 複数行で記述
+&lt;@ 
+    let f x = x + 1
+    f 20
+@&gt;</code></pre>
+                <br>
+
+                
+                <h4 id="スプライシング演算子" class="section-title"> スプライシング演算子</h4>
+                　スプライシングを使用するとリテラルコードのコードクォート式をプログラムで作成した式や別のコードクォート式から作成した式と組み合わせることができます。<br>
+                　スプライシングをするためには、<span class="keyword">%演算子</span> か <span class="keyword">%%演算子</span>を利用します。これら2つを指して<span class="keyword">スプライシング演算子</span>と呼びます。%演算子を利用することで、型付きコードクォート式を挿入することができます。また、%%演算子を利用することで、型なしコードクォート式を挿入することも可能です。<br>
+                <br>
+                　次の例はスプライシング演算子の簡単な例となります。
+
+　              <pre class="code-font"><code class="fsharp">// %演算子の例
+let expr0 = &lt;@ 2 @&gt;
+let expr1 = &lt;@ 1 + %expr0 @&gt;
+printfn "%d" (expr1.Evaluate())  // output: 3</code></pre>
+
+　              <pre class="code-font"><code class="fsharp">// %%演算子の例
+let expr0 = &lt;@@ 10 @@&gt;
+let expr1 = &lt;@@ 5 + %%expr0 @@&gt;
+printfn "%A" (expr1.EvaluateUntyped())  // output: 15</code></pre>
+                <br>
+
+                　文章だけを読むと、なんだか難しそうな内容でしたが、実コードを見てみると何てことはない内容ですね。<br>
+                　この記事ではコードクォート式の概要のみを紹介し、実際に使う場面については別の機会に紹介しようと思います。まだ、このコードクォート式のうま味がわからないと思いますが、現時点では「コードクォート式っていう機能があるんだぁ」くらいの認識で問題ありません。<br>
+                　それでも気になる方は、ググって調べてみると良いと思います。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/05/19
+    </footer>
+</body>
+
+</html>

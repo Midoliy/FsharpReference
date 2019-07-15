@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script> -->
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,match,match式,パターンマッチ,ﾊﾟﾀｰﾝﾏｯﾁ,パターンマッチ式,ﾊﾟﾀｰﾝﾏｯﾁ式,Midoliy">
+
+    <title>Midoliy |> F# - match式</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>match式</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#match式の概要" class="section-title"><b> match式の概要</b></a></div>
+            <div><a href="#サンプルでみるmatch式" class="section-title"><b> サンプルでみるmatch式</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- --------------- -->
+            <!--  match式の概要  -->
+            <!-- --------------- -->
+            <h1 id="match式の概要" class="section-title"> match式の概要</h1>
+            <div>
+                <br>
+
+                　これまで他の章のサンプルコードで、match式について特に触れずに利用しているサンプルを多用してきました。それほどmatch式は、F#コーディングに深く根付いている最重要機能の一つです。C#でいうところのswitch-case文のようなものです(C#8.0から導入されるswitch式は、このmatch式と近い機能を持っています)。もう少しざっくりと言うならば、高機能版if式みたいなものです。<br>
+                　しかし、F#のmatch式はC#のswitch-case文よりも遥かに強力です。match式は、テスト式と一連のパターンとの比較に基づいて複雑な分岐を可能にします。与えられた値をもとにテスト式を各パターンと順番に比較していき、一致するパターンが見つかった場合に、対応する式(= result-expression)が評価され、その値が結果として返されます。これをパターンマッチング、またはパターンマッチと言います。<br>
+                　パターンマッチは、match式やfunction式などを利用して行われます。これらは、bindingやラムダ式、式に関連づいている例外処理などの引数を処理する際に利用されます。<br>
+                　以下はmatch式の基本となる構文です。<br>
+                
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+
+match test-expression with
+| pattern1 [ when condition ] -> result-expression1
+| pattern2 [ when condition ] -> result-expression2
+| ...
+                </code></pre>
+
+                　各パターンは、何らかの方法で入力を変換するための「変換ルール」として機能します。match式は、入力データのパターンが定義されている各パターンと一致するか順番に検査していきます。一致したパターンが見つかると、それに紐づく結果式(= result-expression, 実行式ともいう)が実行されます。また、パターンマッチした値に対してさらに条件を課したい場合には whenキーワード を利用することで、詳細な分岐が可能となっています。<br>
+                　以下はパターンマッチの一覧です。<br>
+                <br>
+
+                <!-- パターンマッチ一覧 -->
+                <table class="list-table">
+
+                    <thead>
+                        <tr>
+                            <th style="min-width:3em;"><span>パターン名</span></th>
+                            <th style="min-width:10em;"><span>説明</span></th>
+                            <th style="min-width:3em;"><span>例</span></th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr><td><a href="./2_constant-pattern.html" class="ref">定数パターン</a></td>
+                            <td>任意の数値、文字、文字列リテラル、列挙定数、または定義済みリテラル識別子とのパターンマッチング.</td>
+                            <td>1.0<br>"hoge"<br>Color.Red</td></tr>
+                            
+                        <tr><td>識別子パターン</td>
+                            <td>判別共用体のケース値、例外ラベル、またはアクティブパターンのケースでのパターンマッチング.</td>
+                            <td>Some(x)<br>Failure(msg)</td></tr>
+                            
+                        <tr><td>変数パターン</td>
+                            <td>照合される値をパターンに則り、新たに変数に割り当てるようなパターンマッチング.</td>
+                            <td>var1</td></tr>
+
+                        <tr><td>asパターン</td>
+                            <td>照合する値をmatch式の結果式で使用できる値にバインディングするようなパターンマッチング.</td>
+                            <td>(a, b) as tuple1</td></tr>
+                            
+                        <tr><td>ORパターン</td>
+                            <td>論理演算 OR を利用した複合条件でのパターンマッチング.</td>
+                            <td>([h] | [h; _])</td></tr>
+                            
+                        <tr><td>ANDパターン</td>
+                            <td>論理演算 AND を利用した複合条件でのパターンマッチング.</td>
+                            <td>(a, b) & (_, "foo")</td></tr>
+                            
+                        <tr><td>Consパターン</td>
+                            <td>リストの先頭要素と残りの要素に分離させるようなパターンマッチング.</td>
+                            <td>x::xs</td></tr>
+                            
+                        <tr><td>リストパターン</td>
+                            <td>リストの要素数でのパターンマッチング.</td>
+                            <td>[ a; b; c; ]</td></tr>
+                            
+                        <tr><td>配列パターン</td>
+                            <td>配列の要素数でのパターンマッチング.</td>
+                            <td>[| a; b; c; |]</td></tr>
+                            
+                        <tr><td>かっこで囲まれたパターン</td>
+                            <td>結合規則を制御するためのパターン.</td>
+                            <td>( a )</td></tr>
+                            
+                        <tr><td>タプルパターン</td>
+                            <td>タプルとのパターンマッチング. (pattern_1, ..., pattern_N)</td>
+                            <td>(a, b)</td></tr>
+
+                        <tr><td>レコードパターン</td>
+                            <td>レコードを分解してフィールドを抽出するためのパターン.</td>
+                            <td>{ Name = name; Age = age; }</td></tr>
+                            
+                        <tr><td>ワイルドカードパターン</td>
+                            <td>すべての値とパターンマッチングするパターン.</td>
+                            <td> _ </td></tr>
+                            
+                        <tr><td>型注釈パターン</td>
+                            <td>値の型が指定されているパターンマッチング.</td>
+                            <td>a : int</td></tr>
+                            
+                        <tr><td>型テストパターン</td>
+                            <td>入力値を特定の型と照合するためのパターンマッチング.</td>
+                            <td>:? System.DataTime as dt</td></tr>
+                            
+                        <tr><td>nullパターン</td>
+                            <td>入力値がnullか照合するためのパターンマッチング.</td>
+                            <td>null</td></tr>
+
+                    </tbody>
+
+                </table>
+                <br>
+
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ----------------------- -->
+            <!--  サンプルでみるmatch式  -->
+            <!-- ----------------------- -->
+            <h1 id="サンプルでみるmatch式" class="section-title"> サンプルでみるmatch式</h1>
+            <div>
+                <br>
+
+                　まずは、以下の簡単な例を見てみてください。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/668b5e7cc9dc5e54852f3c3df6748291.js?file=match1.fs"></script></div>
+
+                　printList関数は list型 を引数に取り、そのlistの要素をすべて出力する関数です。その処理の中で、引数のリストに対してパターンマッチングを行っています。<br>
+                　処理の中身も簡単で、リストをheadとtailに分けられる内はheadの内容を表示していき、空リストになったら空文字を表示して処理を終了します。この「headとtailに分けられる」や「空リストの場合」などの条件がいわゆる "パターン" です。そしてそれにマッチした場合に、それに紐づけられている処理を実行します。<br>
+                　使い方は非常にシンプルなので、覚えることにそれほど苦労はないと思います。また、パターンマッチにはマッチングのさせ方によっていくつか名前が付けられていますが、基本的な考え方は変わりません。次章以降で各パターンマッチの方法について紹介したいと思います。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/24
+    </footer>
+</body>
+
+</html>

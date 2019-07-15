@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,generics,ジェネリック,ジェネリクス,プログラミング,Midoliy">
+
+    <title>Midoliy |> F# - ジェネリック型</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>ジェネリック型</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#ジェネリック型の概要">
+                <i class="fas fa-edit"> ジェネリック型の概要</i>
+            </a></div>
+            <div><a href="#明示的なジェネリック定義">
+                <i class="fas fa-edit"> 明示的なジェネリック定義</i>
+            </a></div>
+            <div><a href="#暗黙的なジェネリック定義">
+                <i class="fas fa-edit"> 暗黙的なジェネリック定義</i>
+            </a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- -------------------- -->
+            <!--  ジェネリック型の概要  -->
+            <!-- -------------------- -->
+            <h1 id="ジェネリック型の概要"><i class="fas fa-edit"> ジェネリック型の概要</i></h1>
+            <div>
+                <br>
+                
+                　プログラミングをしていると、型は違うけれども処理内容が非常に似ている関数や、データ構造を作りたい時があります。そんなときに使用するのがジェネリック(または、ジェネリクス)と呼ばれる機能です。ジェネリックはC++のテンプレート機能のようなものです。関数やクラスなどに "型" をパラメータとして渡し、それらのデータ型をいじることなくタイプセーフなデータ構造(または、処理構造)を定義することができます。たとえば、.NET の List&lt;'T&gt;型 などが有名です。<br>
+                　ジェネリックの型パラメータ(= ジェネリック制約 / ジェネリックコンストラクト)には、少なくとも1つの型パラメータが含まれています。ジェネリック関数やジェネリック型を使用すると、型ごとにわざわざコードを繰り返し記述しなくとも、さまざまな型で動作するコードを記述できます。F#プログラミングにおいては多くの場合、コンパイラの型推論と自動ジェネリック化メカニズムによって、暗黙的にジェネリックとして推論されるため、コードをジェネリック化しやすくなっています。<br>
+                
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ------------------------ -->
+            <!--  明示的なジェネリック定義  -->
+            <!-- ------------------------ -->
+            <h1 id="明示的なジェネリック定義"><i class="fas fa-edit"> 明示的なジェネリック定義</i></h1>
+            <div>
+                <br>
+
+                　明示的にジェネリック関数やジェネリック型を宣言する場合、型パラメータを関数名、または型名の後ろに山カッコに囲んで指定します。また、型パラメータはアポストロフィ(= ') で始まらなければなりません。<br>
+                　型パラメータ以外は、非ジェネリック型となんら変わりません。通常の実装をするだけで、さまざまな型に対応することができます。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/3eebaa1f7f14ffb97bfad3ae99b06cee.js?file=generics1.fs"></script></div>
+                
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ------------------------ -->
+            <!--  暗黙的なジェネリック定義  -->
+            <!-- ------------------------ -->
+            <h1 id="暗黙的なジェネリック定義"><i class="fas fa-edit"> 暗黙的なジェネリック定義</i></h1>
+            <div>
+                <br>
+                　F#コンパイラがコード内の型を推論するとき、ジェネリックにできる関数は自動的にすべてジェネリック型として扱われます。型を明示的に指定することによって、自動ジェネリック化を回避することも可能です。
+                　次のサンプルの、makeList関数 と そのパラメータ はいずれもジェネリックとして明示的に宣言していませんが、F#コンパイラによって自動的にジェネリック型となっています。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/3eebaa1f7f14ffb97bfad3ae99b06cee.js?file=generics2.fs"></script></div>
+                
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/17
+    </footer>
+</body>
+
+</html>

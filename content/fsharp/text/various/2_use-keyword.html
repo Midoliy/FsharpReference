@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,use,resource,management,リソース管理,Midoliy">
+
+    <title>Midoliy |> F# - リソース管理</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css?20190311/">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>リソース管理</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#リソース管理の概要" class="section-title"><b> リソース管理の概要</b></a></div>
+            <div><a href="#サンプルでみるリソース管理" class="section-title"><b> サンプルでみるリソース管理</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- -------------------- -->
+            <!--  リソース管理の概要  -->
+            <!-- -------------------- -->
+            <h1 id="リソース管理の概要" class="section-title"> リソース管理の概要</h1>
+            <div>
+                <br>
+
+                　リソースという用語は、文脈によってさまざまな意味をもっています。例えば、文脈によって「文字列」を指したり、「画像データ」を指したりします。今回のトピックでの「リソース」は、グラフィックデバイスコンテキスト・ファイルハンドル・ネットワークおよびDB接続・同時実行中の待機ハンドルオブジェクトなどの、<span class="keyword">ソフトウェアまたはOSリソースのこと</span>を指します。<br>
+                　アプリケーションによるこれらのリソース使用には、OSや他のリソースプロバイダからの「リソース取得」と、リソースプールへの「リソース解放」が必要となります。リソース解放をすることで別のアプリケーションが改めてそのリソースを利用できるようになるため、アプリケーションがリソースをリソースプールに解放しないと問題が発生します。<br>
+                <br>
+
+                <h4 class="section-title">リソース管理</h4>
+                　アプリケーション内のリソースを効率的かつ責任をもって管理するには、迅速かつ予測可能な方法でリソースを解放する必要があります。.NETでは、System.IDisposableインターフェースを提供することでこれを実現しています。System.IDisposableインターフェースを実装する型には、リソースを正しく解放するためのSystem.IDisposable.Dispose()メソッドが定義されます。これが正しく実装されているアプリケーションは、保持しているリソースが不要となった時点で解放処理がすぐに呼び出されることが保証されています。F#では、Disposeパターンをサポートするために「<span class="keyword">use束縛</span>(= useバインディング)」と「<span class="keyword">using関数</span>」という2種類の構文が用意されています。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ---------------------------- -->
+            <!--  サンプルでみるリソース管理  -->
+            <!-- ---------------------------- -->
+            <h1 id="サンプルでみるリソース管理" class="section-title"> サンプルでみるリソース管理 </h1>
+            <div>
+                
+                <h4 class="section-title">use束縛</h4>
+                　useキーワードによるバインディングは、let束縛とよく似ています。実際に、use束縛はlet束縛と同等の機能を提供しています。さらにlet束縛とは違い、値がスコープ範囲外になったとき、Dispose()メソッドを呼び出す機能が備わっています。また、Dispose()メソッドを呼び出す前にコンパイラは値のnullチェックを実施するため、値がnullの場合はDispose()メソッドの呼び出しを行わないようになっています。<br>
+                <br>
+                　次の例は、use束縛を使用してファイルリソースを自動的に解放する方法を示しています。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/4aac5c2480d1f41ed0481b483e0e7aba.js?file=use-binding1.fs"></script></div>
+                <br>
+
+                <h4 class="section-title">using関数</h4>
+                　using関数は「リソースを引数に取る関数」をパラメータとして受け取る高階関数です。using関数内でのみリソースは有効で、using関数の処理が完了すると同時にリソースは解放されます。<br>
+                <br>
+                　次の例は、using関数を使用してファイルリソースを自動的に解放する方法を示しています。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/4aac5c2480d1f41ed0481b483e0e7aba.js?file=using-func1.fs"></script></div>
+                <br>
+                
+                　use束縛とusing関数は、リソースの有効である範囲が違う以外は基本的に同等の機能を提供しています。一般的にusing関数ではなく、use束縛を利用することが推奨されていますが、スコープの違いが重要な状況などでは、しっかりと使い分けをするようにしましょう。<br>
+
+                <br>
+            </div>
+            
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/03/12
+    </footer>
+</body>
+
+</html>

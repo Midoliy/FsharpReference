@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,型拡張,拡張メソッド,type,Midoliy">
+
+    <title>Midoliy |> F# - 型拡張</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>型拡張</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#型拡張の概要" class="section-title"><b> 型拡張の概要</b></a></div>
+            <div><a href="#組み込み型拡張" class="section-title"><b> 組み込み型拡張</b></a></div>
+            <div><a href="#オプション型拡張" class="section-title"><b> オプション型拡張</b></a></div>
+            <div><a href="#拡張メソッド" class="section-title"><b> 拡張メソッド</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- -------------- -->
+            <!--  型拡張の概要  -->
+            <!-- -------------- -->
+            <h1 id="型拡張の概要" class="section-title"> 型拡張の概要</h1>
+            <div>
+                <br>
+                
+                　型拡張は、既に定義されているオブジェクト型に継承を使わずに新しいメンバを追加するための機能です。型拡張には3つの手法があり、それぞれ適したシナリオがあります。<br>
+                <ul>
+                    <li>組み込み型拡張</li>
+                    <li>オプション型拡張</li>
+                    <li>拡張メソッド</li>
+                </ul>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- --------------- -->
+            <!--  組み込み型拡張  -->
+            <!-- --------------- -->
+            <h1 id="組み込み型拡張" class="section-title"> 組み込み型拡張</h1>
+            <div>
+                <br>
+                
+                　組み込み型拡張は、ユーザ定義型を拡張する型拡張機能です。<br>
+                　組み込み型拡張を定義するには、拡張したい型と「同じファイル」 or 「同じ名前空間」 or 「同じモジュール内」で定義する必要があります。それ以外で定義した場合、オプション型拡張となります。<br>
+                　つまり、組み込み型拡張もオプション型拡張は「定義する場所」だけが異なり、定義方法は同じと言えます。以下は、組み込み型拡張とオプション型拡張の定義構文の紹介と、簡単なサンプルとなります。<br>
+                
+                <pre class="code-font"><code class="fsharp">// 構文
+type typename with
+    member self_identifier.member_name = body
+    ...</code></pre>
+
+                <pre class="code-font"><code class="fsharp">namespace InstrinsicExtensionsExample
+
+type Variant =
+    | Number of int
+    | String of string
+
+module Variant =
+    let print = function
+                | Number n -&gt; printfn "Number: %d" n
+                | String s -&gt; printfn "String: %s" s
+
+// 組み込み型拡張の定義例
+type Variant with
+    member self.Print () = Variant.print self
+
+// ex: let n = Number 10
+//     n.Print ()       // output: Number: 10</code></pre>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ----------------- -->
+            <!--  オプション型拡張  -->
+            <!-- ----------------- -->
+            <h1 id="オプション型拡張" class="section-title"> オプション型拡張</h1>
+            <div>
+                <br>
+                
+                　前述のとおりオプション型拡張は、「元のファイル」 or 「元のモジュール」 or 「元の名前空間」 以外の場所で型を拡張したい場合に利用される手法です。多くの場合、拡張したい型が別のアセンブリで定義されていると思います。つまり、プリミティブ型や他人が作ったライブラリで定義されている型などに対して型拡張したいときに利用します。<br>
+                　定義の方法については、<a href="#組み込み型拡張" class="ref"> 組み込み型拡張</a> と同様なため、以下には簡単なサンプルのみを示します。<br>
+                
+                <pre class="code-font"><code class="fsharp">module Extensions
+open System.Collections.Generic
+
+// オプション型拡張の定義例
+type IEnumerable&lt;T&gt; with
+    member self.RepeatElements (n: int) =
+        seq {
+            for x in self do
+                for i in 1..n do
+                   yield x
+        }
+
+// ex: let ary = [| 0..10 |]
+//     ary.RepeatElements 3
+//     |&gt; Seq.toArray
+//     |&gt; printfn "%A"
+//        // output: [|0; 0; 0; 1; 1; 1; 2; 2; 2; 3; 3; 3; 4; 4; 4; 5; 5; 5; 6; 6; 6; 7; 7; 7; 8; 8; 8; 9; 9; 9; 10; 10; 10|]</code></pre>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ------------- -->
+            <!--  拡張メソッド  -->
+            <!-- ------------- -->
+            <h1 id="拡張メソッド" class="section-title"> 拡張メソッド</h1>
+            <div>
+                <br>
+
+                　C#でお馴染みの拡張メソッドをF#で定義することも可能です。拡張メソッドは、クラスのstaticメンバメソッドとして宣言することで、対象の型に対して機能拡張をすることができます。<br>
+                　以下は、拡張メソッドの定義構文の紹介と、簡単なサンプルとなります。<br>
+
+                <pre class="code-font"><code class="fsharp">// 構文
+open System.Runtime.CompilerServices
+
+[&lt;Extension&gt;]
+type Extensions() =
+    [&lt;Extension&gt;]
+    static member inline self_identifier.extension_name (ty: typename, [args]) =
+        body
+        ...</code></pre>
+
+                <pre class="code-font"><code class="fsharp">open System.Runtime.CompilerServices
+
+// 拡張メソッドの定義例
+[&lt;Extension&gt;]
+type IEnumerableExtensions () =
+    [&lt;Extension&gt;]
+    static member inline Sum (xs: IEnumerable&lt;'T&gt;) = Seq.sum xs
+
+[1..10].Sum()
+|> printfn "%d"     // output: 55</code></pre>
+
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/06/02
+    </footer>
+</body>
+
+</html>

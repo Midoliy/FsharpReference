@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,名前空間,namespace,プログラミング,Midoliy">
+
+    <title>Midoliy |> F# - 名前空間</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>名前空間</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#名前空間とは">
+                <i class="fas fa-edit"> 名前空間とは</i>
+            </a></div>
+            <div><a href="#入れ子の名前空間">
+                <i class="fas fa-edit"> 入れ子の名前空間</i>
+            </a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+            <!-- ------------- -->
+            <!--  名前空間とは  -->
+            <!-- ------------- -->
+            <h1 id="名前空間とは"><i class="fas fa-edit"> 名前空間とは</i></h1>
+            <div>
+                <br>
+            　　　名前空間(= namespace)とは、関連する機能を名前をつけてグループ化したもののことを指します。名前空間を使う場合は、F#ファイルの中で最上位の要素として宣言しなければなりません。
+                基本的には名前空間よりも上の行には コンパイラディレクティブ しか書くことができません。<br>
+                　また、名前空間の中には直接 "値" や "関数" などを含めることができないので、<span class="keyword">module</span> や <span class="keyword">type</span> などを宣言し、それらに必要な値や関数を定義しなければなりません。<br>
+                　module や type については別の章で解説するので、今回は「そんなのもあるんだ～」ぐらいでサラッと流してください。<br>
+
+                <pre class="code-font"><code class="fsharp">// 計算する機能を集めたグループを作成
+// 最上位の要素
+namespace Calc
+
+// 名前空間の中には直接関数を定義できないため、moduleを宣言します
+module MyCalc =
+    // 足し算
+    let plus x y = x + y
+
+    // 引き算
+    let sub x y = x - y
+
+    // 掛け算
+    let mul x y = x * y
+
+    // 割り算
+    let div x y = x / y</code></pre>
+                <br>
+
+                　以下のように、1つのファイルに複数の名前空間を定義することも可能です。<br>
+                <pre class="code-font"><code class="fsharp">// 1つ目の名前空間
+namespace Hoge      // ここから下が Hoge名前空間となります
+
+// Hoge名前空間 の中の MyHogeモジュール
+module MyHoge =
+    // Hoge名前空間 の中の MyHogeモジュール の中の f関数
+    let f x y = x + y
+
+
+// 2つ目の名前空間
+namespace Fuga      // ここから下が Fuga名前空間となります(1行前までがHoge名前空間)
+
+// Fuga名前空間 の中の MyFugaモジュール
+module MyFuga =
+    // Fuga名前空間 の中の MyFugaモジュール の中の f関数
+    let f x y = x + y</code></pre>
+                <br>
+
+                　名前空間(またはモジュール名)が異なっていれば、sample2.fs の f関数 のように同じ名前で同じ引数の関数を定義することも可能です。<br>
+                　利用する場合は以下のように記述して区別します。<br>
+                <pre class="code-font"><code class="fsharp">// Hoge名前空間 の中の MyHogeモジュール の中の f関数 を利用
+let answer1 = Hoge.MyHoge.f 10 20
+
+// Fuga名前空間 の中の MyFugaモジュール の中の f関数 を利用
+let answer2 = Fuga.MyFuga.f 10 20</code></pre>
+                <br>
+
+                　このように、
+                <pre class="code-font"><code class="fsharp">名前空間.モジュール名.関数名
+名前空間.モジュール名.値名</code></pre>
+                <br>
+                などと記述することで、関数や値にアクセスすることができます。<br>
+                <br>
+                
+                　また、下記のように、モジュール宣言のあとに名前空間を定義することはできないので、注意してください。<br>
+                <pre class="code-font"><code class="fsharp">module MyHoge =
+    // MyHogeモジュール の中の f関数
+    let f x y = x + y
+
+
+// モジュール宣言のあとに名前空間を宣言することはできません.
+// 以下はエラーとなります.
+// namespace Fuga       
+
+// Fuga名前空間 の中の MyFugaモジュール
+module MyFuga =
+    // Fuga名前空間 の中の MyFugaモジュール の中の f関数
+    let f x y = x + y// ファイルの先頭に モジュール宣言 をするときは = を書いてはいけません
+    module MyHoge 
+        // MyHogeモジュール の中の f関数
+        let f x y = x + y
+    
+    
+    // モジュール宣言のあとに名前空間
+    // このような書き方はエラー
+    namespace Fuga       
+    
+    // Fuga名前空間 の中の MyFugaモジュール
+    module MyFuga =
+        // Fuga名前空間 の中の MyFugaモジュール の中の f関数
+        let f x y = x + y</code></pre>
+
+            <br>
+            </div>
+            
+            <br>
+    
+            <!-- ----------------- -->
+            <!--  入れ子の名前空間  -->
+            <!-- ----------------- -->
+            <h1 id="入れ子の名前空間"><i class="fas fa-edit"> 入れ子の名前空間</i></h1>
+            <div>
+                <br>
+                　名前空間の中に名前空間を定義するような、入れ子になっている名前空間を定義することもできます。.NETの名前空間を "入れ子の名前空間" のサンプルとして紹介します。<br>
+                　※ サンプルのモジュール名やクラス名は架空のものです。。<br>
+
+                <pre class="code-font"><code class="fsharp">namespace System
+//  System名前空間 の中に Integerクラス を定義
+type Integer (i:int) =
+    let Value = i
+
+// System名前空間 の中の IO名前空間 (= 入れ子になった名前空間)
+namespace System.IO
+
+// System.IO名前空間 の中に Fileモジュール を定義
+module File =
+    let Exist filename = true   // とりあえずtrue返すだけ</code></pre>
+                
+                <br>
+            </div>
+            
+            
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/17
+    </footer>
+</body>
+
+</html>

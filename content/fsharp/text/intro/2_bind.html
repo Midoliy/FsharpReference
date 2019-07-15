@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,let束縛,値,プログラミング,Midoliy">
+
+    <title>Midoliy |> F# - 値の束縛</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>値の束縛</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#FSharpの値">
+                <i class="fas fa-edit"> F#の値</i>
+            </a></div>
+            <div><a href="#値の束縛">
+                <i class="fas fa-edit"> 値の束縛</i>
+            </a></div>
+            <div><a href="#変更可能な値">
+                <i class="fas fa-edit"> 変更可能な値</i>
+            </a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+            <!-- -------- -->
+            <!--  F#の値  -->
+            <!-- -------- -->
+            <h1 id="FSharpの値"><i class="fas fa-edit"> F#の値</i></h1>
+            <div>
+                <br>
+                　F#の値は、特定の "<b>型</b>" をもっています。値は必ず、以下のいずれかの型となります。<br>
+
+                <br>
+
+                <table class="list-table" style="width:12em;margin-left: 3em;">
+                    <tbody>
+                        <tr><td><span>整数</span></td></tr>
+                        <tr><td><span>浮動小数点数</span></td></tr>
+                        <tr><td><span>文字</span></td></tr>
+                        <tr><td><span>文字列</span></td></tr>
+                        <tr><td><span>リスト</span></td></tr>
+                        <tr><td><span>シーケンス</span></td></tr>
+                        <tr><td><span>配列</span></td></tr>
+                        <tr><td><span>タプル</span></td></tr>
+                        <tr><td><span>判別共用体</span></td></tr>
+                        <tr><td><span>レコード</span></td></tr>
+                        <tr><td><span>クラス型</span></td></tr>
+                        <tr><td><span>関数値</span></td></tr>
+                    </tbody>
+                </table>
+
+                <br>
+                　型の詳細は "F#の型" の章で紹介します。<br>
+
+                <br>
+            </div>
+            
+            <br>
+    
+            <!-- ---------- -->
+            <!--   値の束縛  -->
+            <!-- ---------- -->
+            <h1 id="値の束縛"><i class="fas fa-edit">  値の束縛</i></h1>
+            <div>
+                <br>
+                　束縛, またはバインドとは、"名前" と "定義" を関連付けること(= バインディング)を指します。<span class="keyword">let</span>キーワードは次のように値のバインディングを行います。<br>
+                <pre class="code-font"><code class="fsharp">let x = 1       // int型
+let y = 100u    // unsigned int型
+let s = "test"  // string型
+
+// 関数値のバインディング
+let f x = x**2  // xを2乗する関数
+</code></pre>
+                <br>
+                　例のように "let" を利用して "名前" と "定義" をバインディングすることを "let束縛" または "letバインディング" といいます。
+                また、値の "型" は、定義(= 右辺)から自動的に推論されます。整数や浮動小数点数型などのF#組み込み型については "型リテラル" の型から判断されます。
+                型リテラルは、 "F#の型" の各型の項目で紹介します。<br>
+                <br>
+                　letバインディングされた値は、基本的に不変な値(= 変更不可能な値)となっています(= immutable)。<br>
+                　immutableな値は、プログラムの実行過程全体を通じて変更ができません。C#やVB.NETなどの関数型言語以外の言語に慣れ親しんでいる場合、変更可能な値(= 変数)ではなく
+                変更不可能な値が使用されることに違和感を覚えるかもしれません。しかし、この "値は基本的に変更されない" という大前提が関数型プログラミングでは非常に重要な要素と
+                なります。<br>
+                　マルチスレッド環境では、多数の異なるスレッドから変更される共有変数を管理することは非常に難しいです。また、変数が別の関数に渡されたときに変更される可能性があるか
+                どうかを見分けることが難しい場合があります。こういった問題に対して "immutableな値" が既定であることが優位に働きます(詳細は別章)。<br>
+                <br>
+                　特に純粋な関数型言語では、変数は存在せず、関数は数学関数として厳密に機能します。手続き型言語のコードでは代入などの変数割り当てを使用して値を変更しますが、関数型
+                言語の場合には、(1)immutableな入力値, (2)immutableな関数, (3)immutableな出力値 であらわされます。この数学的な厳密性によって、強力な型推論が実現可能となっています。
+                この強力な型推論により、コンパイラでコードをより厳密にチェックし、より効率的な最適化が行われ、開発者が正しいコードを容易に理解・記述できるようになります。<br>
+                　このような仕組みのおかげで、関数型言語でのプログラミングにおいては、通常の手続き型プログラミングよりもデバッグが容易になることが普通です。<br>
+                <br>
+                　F#は、純粋な関数型言語ではないですが、関数型プログラミングを完全にサポートしています。
+                immutableな値を使用することは、コーディングにおいて関数型プログラミングの重要な特長を利用するための優れた方法です。<br>
+            
+                <br>
+            </div>
+            
+            <br>
+    
+            <!-- ------------- -->
+            <!--  変更可能な値  -->
+            <!-- ------------- -->
+            <h1 id="変更可能な値"><i class="fas fa-edit">  変更可能な値</i></h1>
+            <div>
+                <br>
+                　F#は純粋な関数型言語ではないため、変更可能な値(= mutableな値)を利用することも可能です。
+                その場合、let束縛に <span class="keyword">mutable</span>キーワードを使用します。<br>
+                　F#でのmutableな値の使える範囲は、通常、型のフィールド、または、ローカル値のみに限定されています。mutableな値を利用できる範囲を限定することによって、
+                制御を容易にして、誤った方法で値が変更される可能性を低くくしています。<br>
+                　新しい値を割り当てる場合、<span class="keyword">&lt;-演算子</span> を使用して再割り当てを行います。以下が mutableな値 の簡単な例になります。<br>
+                <pre class="code-font"><code class="fsharp">let mutable x = 1
+x &lt;- x + 1</code></pre>
+
+                <br>
+            </div>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/17
+    </footer>
+</body>
+
+</html>

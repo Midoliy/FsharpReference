@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,カリー,カリー化,curry,関数,Midoliy">
+
+    <title>Midoliy |> F# - カリー化</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>カリー化</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#カリー化の概要" class="section-title"><b> カリー化の概要</b></a></div>
+            <div><a href="#サンプルでみるカリー化" class="section-title"><b> サンプルでみるカリー化</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ---------------- -->
+            <!--  カリー化の概要  -->
+            <!-- ---------------- -->
+            <h1 id="カリー化の概要" class="section-title"> カリー化の概要</h1>
+            <div>
+                <br>
+
+                　カリー化(= curriyng)とは、「<b>複数の引数を取る関数</b> を <b>引数が '元の関数の最初の引数' で戻り値が '元の関数の残りの引数を取り, 結果を返す関数'</b>」 となるように関数を作成することを指します。語弊がありますが、F#においては、タプル型の引数を取る関数を、<span class="keyword">引数を一つのみ取るような関数を結合した関数に変換</span>すれば、カリー化していると言っても差し支えないでしょう。<br>
+                　F#の関数は、デフォルトでカリー化されます。つまりタプル形式の引数指定を行わない場合、F#の関数は(見た目上)引数を一つしか受け取らないような関数となっています。'見た目上'と書いたのは実際にはそうなっていないためです。関数型言語の中には言語仕様として「関数は必ず一つの引数のみを取る」という仕様をもっている言語も存在しています。そういった言語では見た目だけでなく、実際に内部的にも関数は一つの引数しか受け取っていないことになっています。<br>
+                　この「関数は必ず一つの引数のみを取る」という文言だけ見てしまうと、「複数の引数を持ちたい場合はタプル形式でしか引数指定ができないのか？」と思う人がいるかもしれません。ですが、ここでもう一つのキーワードである、「引数が '元の関数の最初の引数' で戻り値が '元の関数の残りの引数を取り, 結果を返す関数」に目を向けます。これはつまり、「関数を返す関数を作る = <a href="./2_higher-order.html" target="_blank" class="ref">高階関数</a>を作る」ということです。こうすることによって、複数の引数値をタプル化せずに受け取れるわけです。<br>
+                <br>
+
+                　言葉だけだと難しく感じてしまいますが、実際はそうではありません。事実、F#ではカリー化を意識することなくカリー化された関数を作成できます。もしかするとすでに使っているかもしれません。以下はその簡単な例です。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=curry1.fs"></script></div>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ------------------------ -->
+            <!--  サンプルでみるカリー化  -->
+            <!-- ------------------------ -->
+            <h1 id="サンプルでみるカリー化" class="section-title"> サンプルでみるカリー化</h1>
+            <div>
+                <br>
+
+                　いろいろ紹介や説明をする前に、まず、カリー化されているさまざまな関数をサンプルで見てみましょう。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=curry2.fs"></script></div>
+                <br>
+
+                　カリー化を利用すると、ベースとなる関数の<span class="keyword">一部の引数値を固定値とした</span>新しい関数を作成することができます。この「関数の一部の引数値をある値で固定する」ことを <span class="keyword">部分適用</span> といいます。部分適用は非常に便利なテクニックなので、コーディングをしているとよく利用します。ぜひ使えるようになりましょう。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/21
+    </footer>
+</body>
+
+</html>

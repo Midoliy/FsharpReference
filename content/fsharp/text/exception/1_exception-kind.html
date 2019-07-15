@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,exception,例外,例外処理,Midoliy">
+
+    <title>Midoliy |> F# - 例外処理の概要</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css?20190311/">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>例外処理の概要</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#例外処理の概要" class="section-title"><b> 例外処理の概要</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ---------------- -->
+            <!--  例外処理の概要  -->
+            <!-- ---------------- -->
+            <h1 id="例外処理の概要" class="section-title"> 例外処理の概要</h1>
+            <div>
+                <br>
+                
+                　F#には、「.NET例外型」と「F#例外型」の2種類の例外が混在しています。この章では、.NET例外型ではなく、F#例外型を定義して利用する方法について紹介します。<br>
+
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+exception exception-type of argument-type</code></pre>
+                <br>
+
+                　上記の構文で、[exception-type] には新しい作成したいF#例外型の名前を指定します。また、[argument-type] にはこの型の例外を発生させるときに指定できる引数の型を表しています。[argument-type] に複数の値を渡したい場合は、tuple型を利用して複数の値を指定することも可能です。<br>
+                　一般的なF#例外は以下のように定義します。<br>
+
+                <pre class="code-font"><code class="fsharp">expression MyError of string</code></pre>
+                <br>
+                
+                　また、次のように <span class="keyword">raise関数</span> を使用して例外を発生させることができます。<br>
+
+                <pre class="code-font"><code class="fsharp">raise (MyError "Error message")</code></pre>
+                <br>
+
+                　意味があるかは別にして、パイプラインを利用して下記のようにすることも可能です。<br>
+
+                <pre class="code-font"><code class="fsharp">MyError "Error message" |> raise</code></pre>
+                <br>
+
+                　さらに、意味があるかは別にして、パイプラインを利用して下記のように記述しても問題ありません。<br>
+
+                <pre class="code-font"><code class="fsharp">"Error message" |> MyError |> raise</code></pre>
+                <br>
+
+                　上記のように、状況に合わせてパイプラインを利用しつつ、例外を発生させることが可能です。<br>
+                　一般的に、F#の例外処理は「<span class="keyword">try...with</span>構文」を利用して、下記のように行います。<br>
+                <br>
+                
+                <div class="code"><script src="https://gist.github.com/Midoliy/06bcede7dff22227ed166756d7d30294.js?file=exception1.fs"></script></script></div>
+
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/03/14
+    </footer>
+</body>
+
+</html>

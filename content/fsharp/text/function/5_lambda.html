@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,lambda,ラムダ,ﾗﾑﾀﾞ,ラムダ式,ﾗﾑﾀﾞ式,関数,Midoliy">
+
+    <title>Midoliy |> F# - ラムダ式</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>ラムダ式</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#ラムダ式の概要" class="section-title"><b> ラムダ式の概要</b></a></div>
+            <div><a href="#サンプルでみるラムダ式" class="section-title"><b> サンプルでみるラムダ式</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ---------------- -->
+            <!--  ラムダ式の概要  -->
+            <!-- ---------------- -->
+            <h1 id="ラムダ式の概要" class="section-title"> ラムダ式の概要</h1>
+            <div>
+                <br>
+
+                　ラムダ式とは、「ラムダ計算論」を元に、プログラミングの「式」として落とし込んだものになります。ラムダ計算という名前の「ラムダ」は、関数を表現する式に文字ラムダ(= λ)を使う慣習から来ています。<br>
+                <br>
+                　プログラミングのラムダ式を紹介する前に、まずは計算理論としてのラムダ式について簡単に紹介します。これは、F#に限らずC#などの言語でも急にラムダ式の構文や使い方の説明から入っている参考書等が多いですが、いきなり今まで使っていた関数とは異なる記述法を示されても覚えずらいと考えたためです。<br>
+                　中学校くらいで習う代数学を思い出してみましょう。例えば、ある数に2を足す 関数f を考えます。これは通常、
+
+                <pre class="code-font"><code class="fsharp"><span style="font-weight: bold;font-style: italic;">f(x) = x + 2</span></code></pre>
+
+                と書くことができます。この 関数f の 引数x に5を渡すと7が返され、10を渡すと12が返されてきます。関数fをラムダ式で表現では、
+
+                <pre class="code-font"><code class="fsharp"><span style="font-weight: bold;font-style: italic;">λx. x + 2</span></code></pre>
+                
+                と記述します。複数の引数を取る関数の場合は以下のようになります。
+
+                <pre class="code-font"><code class="fsharp"><span style="font-weight: bold;font-style: italic;">λx (λy. x + y)</span></code></pre>
+
+                　ラムダ計算では、関数の引数は常に1つです。上記のサンプルのように引数を2つとるような関数の場合は、1つの引数を取り、残りの引数と返り値はすべて関数扱いとなります。感の良い方は気づいたかもしれませんが、ラムダ計算では常に <a href="./3_curry.html" class="ref" target="_blank">カリー化</a> されています。こういった理論に基づいて関数型プログラミング言語はデザインされているため、C#などの後付けてラムダ式を導入している言語に比べ、理論に近いコードをより簡易に記述することができるわけです。<br>
+                <br>
+                
+                　ここで前述した「ある数に2を足す 関数f」とF#のラムダ式とを比較してみます。
+
+                <pre class="code-font"><code class="fsharp">ラムダ式   : <span style="font-weight: bold;font-style: italic;">λx. x + 2</span>
+F♯ラムダ式 : <span style="font-weight: bold;font-style: italic;">fun x -&gt; x + 2</span></code></pre>
+                
+                　こうやって見比べてみると、非常に単純ですね。「λ が fun」に、「. が -&gt;」に、変わっているだけです。また、複数の引数を取る関数の場合は以下のようになります。
+
+                <pre class="code-font"><code class="fsharp">ラムダ式   : <span style="font-weight: bold;font-style: italic;">λx. λy. x + y</span>
+F♯ラムダ式 : <span style="font-weight: bold;font-style: italic;">fun x -&gt; fun y -&gt; x + y</span></code></pre>
+
+                　おそらく、皆さんの予想通りの形だったと思います。しかし、ここで思い出してください。F#の関数は基本的にカリー化されるのでした。つまり、以下のように短縮して記述することも可能です。
+                <pre class="code-font"><code class="fsharp"><span style="font-weight: bold;font-style: italic;">fun x y -&gt; x + y</span></code></pre>
+
+                　だいぶスッキリしました。このように見た目も機能美も、美しくなるようにF#はデザインされているわけです。そして、プログラミング言語にとって重要な話として、F#のラムダ式は(当たり前ですが)「式」として扱われます。「文」とは違い、値を記述できる箇所であればどこにでも記述可能です。つまり、F#においてラムダ式は非常に多くの場面で活躍できるというわけです。それを念頭に学習を進めましょう。<br>
+                <br>
+
+                　最後にF#のラムダ式の構文を紹介しておきます。<br>
+                <pre class="code-font"><code class="fsharp">// ------------------
+// [ 構文 ]
+// ------------------
+
+fun parameter-list -> expression
+                </code></pre>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- ------------------------ -->
+            <!--  サンプルでみるラムダ式  -->
+            <!-- ------------------------ -->
+            <h1 id="サンプルでみるラムダ式" class="section-title"> サンプルでみるラムダ式</h1>
+            <div>
+                <br>
+
+                　ラムダ式は匿名関数とも呼ばれ、F#においては高階関数とともによく使われます。これはわざわざ関数を作成するまでもない場合に特に便利です。<br>
+                　以下に簡単にその違いを表したサンプルを示します。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/5fd99f410363260a23f4b6e80039a7e5.js?file=lambda1.fs"></script></div>
+                <br>
+
+                　上記のサンプルのように簡単な条件判定をするためだけに isEven関数 のような関数を作成するのは面倒です。特に関数名を考えることが厳しくなってきます。サンプルではfilterを1度だけしているだけなのであまりそうは感じないかもしれませんが、パイプラインで複数のfilter処理やmap処理を組み合わせていく場合に、それが露見し始めます。また、一つ一つに関数名をつけていくと関数名のレパートリーが尽きていきます。そういったときにラムダ式が活躍するわけですね。<br>
+                　ラムダ式は、F#コーディングにおいて非常重要な機能の一つです。使えないとお話にもならないので、いろいろ試してみて使いこなせるようになりましょう。<br>
+
+                
+                <br>
+            </div>
+
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/24
+    </footer>
+</body>
+
+</html>

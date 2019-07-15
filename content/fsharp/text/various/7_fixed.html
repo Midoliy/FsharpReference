@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,fixed,Midoliy">
+
+    <title>Midoliy |> F# - fixed</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css?20190311/">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>fixed</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#fixedキーワードの概要" class="section-title"><b> fixedキーワードの概要</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ---------------------- -->
+            <!--  fixedキーワードの概要  -->
+            <!-- ---------------------- -->
+            <h1 id="fixedキーワードの概要" class="section-title"> fixedキーワードの概要</h1>
+            <div>
+                <br>
+
+                 　fixedキーワードは、ガベージコレクションに収集されたり、移動させられたりするのを防ぐために利用します。主に低レベルのプログラミングをする際に利用することが多いです。<br>
+                 余談ですが、「低レベルプログラミング」という言葉は「レベルが低い」という意味ではなく、「Low Layer」という意味なので間違わないようにしましょう。うっかり本屋さんで「低レベルプログラミング」という、その名もズバリな書籍を勘違いして購入してしまうと、あまりのハイレベルさに卒倒してしまうかもしれません。<br>
+                 <br>
+
+                 　話を戻しまして、以下にfixedキーワードの構文を示します。
+                <pre class="code-font"><code class="fsharp">// -------------------------------------
+// [ 構文 ]
+use ptr = fixed expression</code></pre>
+                <br>
+
+                　fixedキーワードを利用することによって、対象リソースはメモリ上に固定されます。また、「use」キーワードからわかるとおり、リソース管理のときと同様、スコープを抜けると固定されているリソースは固定解除されます。<br>
+                　また、fixedキーワードは関数かメソッドの中でしか利用することができないことにも注意が必要です。スクリプトでの利用やモジュールレベルでのスコープでは使用することができませんので、覚えておきましょう。<br>
+                　fixedキーワードはポインタを扱うコードのため、いわゆる「危険な機能」の一つです。利用時には警告を発せられますので、利用時には用法用量をよく守りましょう。<br>
+                <br>
+
+                　以下は、fixedキーワードを利用した簡単なサンプルとなります。
+
+                <pre class="code-font"><code class="fsharp">open Microsoft.FSharp.NativeInterop
+
+type Point = { mutable X: int; mutable Y: int; }
+
+let squareWithPointer p =
+// nativeptr&lt;'T&gt;を扱うには, NativePtrモジュールを利用すると便利です.
+    let mutable value = NativePtr.get p 0
+    value &lt;- value * value
+    NativePtr.set p 0  value
+
+let doPointWork p0 =
+    // fixedキーワードを利用して, p0.Yのアドレスを固定します.
+    // そうすることで, nativeptr&lt;'T&gt;を取得することが可能です(今回は nativeptr<int>).
+    use p = fixed &p0.Y
+    squareWithPointer p
+
+let pnt = { X=1; Y=2;}
+printfn "X= %d, Y= %d" pnt.X pnt.Y
+
+doPointWork pnt
+printfn "X= %d, Y= %d" pnt.X pnt.Y
+// 
+// output:
+//      X= 1, Y= 2
+//      X= 1, Y= 4
+//</code></pre>
+                <br>
+
+                　fixedキーワードは通常、値を固定しなければならない機会がそう多くないために、あまり利用されることがありません（もちろん分野によっては頻繁に利用するので一概には言えませんが...）。私自身、画像処理のコーディングの際に利用するくらいなものです。<br>
+                　しかし、知らないとハマることもありますので、記憶の片隅にでも置いておくと良いでしょう。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/06/03
+    </footer>
+</body>
+
+</html>

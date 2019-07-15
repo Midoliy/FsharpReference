@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143164157-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143164157-1');
+    </script>
+    
+
+
+    <!-- Google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5419541141241701",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Normal -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5419541141241701"
+            data-ad-slot="1814399841"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- コードハイライトライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/vs.min.css">
+    <script src="../../../../lib/highlight.pack.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google-site-verification" content="09hfklx0xyk42C60Ah0xvRFySTBGutqeAlcYIgZrI9A" />
+    <meta name="keywords" content="F,F#,Ｆ＃,Ｆ,FSharp,F-Sharp,ワイルドカードパターン,ワイルドカード,ﾊﾟﾀｰﾝﾏｯﾁ,パターンマッチ,Midoliy">
+
+    <title>Midoliy |> F# - ワイルドカードパターン</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../css/text-page.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="icon">
+            <a href="../../index.html" title="F#-TOPへ">
+                <div>ワイルドカードパターン</div>
+            </a>
+            <div>Midoliy｜F#プログラミング</div>
+        </div>
+    </header>
+
+    <section>
+        <!-- index-column -->
+        <div class="content-list">
+            <div><a href="#ワイルドカードパターンの概要" class="section-title"><b> ワイルドカードパターンの概要</b></a></div>
+            <div><a href="#サンプルでみるワイルドカードパターン" class="section-title"><b> サンプルでみるワイルドカードパターン</b></a></div>
+        </div>
+        
+        <!-- content-column -->
+        <div class="content">
+
+            <!-- ------------------------------ -->
+            <!--  ワイルドカードパターンの概要  -->
+            <!-- ------------------------------ -->
+            <h1 id="ワイルドカードパターンの概要" class="section-title"> ワイルドカードパターンの概要</h1>
+            <div>
+                <br>
+
+                　ワイルドカードパターンは、<span class="keyword">アンダースコア( _ )</span>文字で表され、変数パターンと同じように任意の入力値と一致します。ただし変数パターンとは違い、入力値は変数に代入されずに破棄されます。ワイルドカードパターンは、<span class="keyword">-&gt;</span> シンボルの右側の式に不要な値のプレースホルダーとして他のパターン内でよく使用されます。特にワイルドカードパターンは、パターンリストの末尾で、すべてのパターンと一致しないパターンと一致させるためにも頻繁に使用されます。<br>
+
+                <br>
+            </div>
+
+            <br>
+
+            <!-- -------------------------------------- -->
+            <!--  サンプルでみるワイルドカードパターン  -->
+            <!-- -------------------------------------- -->
+            <h1 id="サンプルでみるワイルドカードパターン" class="section-title"> サンプルでみるワイルドカードパターン</h1>
+            <div>
+                <br>
+                
+                　以下の例は、定数パターン内のワイルドカードパターンを示しています。<br>
+                <br>
+
+                <div class="code"><script src="https://gist.github.com/Midoliy/668b5e7cc9dc5e54852f3c3df6748291.js?file=wild-card1.fs"></script></div>
+                <br>
+
+                　サンプルでは 1 / 2 / 3 に関しては定数パターンとしてマッチングしますが、それ以外の数値に関してはすべてワイルドカードパターンに一致します。<br>
+                　このように明示的に分岐させたい値とそれ以外での処理を分離させたい時にワイルドカードパターンは便利です。<br>
+
+                <br>
+            </div>
+
+            <br>
+            
+            <br>
+        </div>
+    </section>
+
+    <footer>
+        投稿日 : 2019/02/25
+    </footer>
+</body>
+
+</html>
