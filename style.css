@@ -1,3 +1,8 @@
 .gist .highlight{
     background: #ffffde !important;
 }
+
+.gist, table, td, th {
+    border: 0px solid; 
+    padding: 10px;
+}
