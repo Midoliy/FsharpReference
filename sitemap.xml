@@ -1,221 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
-<!--  created with free sitemap generation system www.sitemapxml.jp  --> 
-<url>
-  <loc>http://midoliy.com/</loc>
-  <priority>1.0</priority>
-  <lastmod>2019-02-19T23:12:52+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/index.html</loc>
-  <priority>0.8</priority>
-  <lastmod>2019-02-19T23:12:52+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/csharp/index.html</loc>
-  <priority>0.8</priority>
-  <lastmod>2019-02-19T23:16:55+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/index.html</loc>
-  <priority>0.8</priority>
-  <lastmod>2019-02-21T22:08:58+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/profile/index.html</loc>
-  <priority>0.8</priority>
-  <lastmod>2019-02-19T23:16:27+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/csharp/text/intro/0_intro.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-19T23:16:40+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/csharp/text/intro/1_hello.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-19T23:16:46+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/csharp/text/type/0_primitive-list.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-19T23:16:50+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/intro/0_intro.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:32:44+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/intro/1_hello.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:33:08+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/intro/2_bind.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:33:19+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/intro/3_func.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:33:26+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/intro/4_expression.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:33:32+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/intro/5_namespace.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:33:38+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/intro/6_module.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:33:44+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type/0_type-list.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-23T10:07:33+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type/1_primitive-type.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-23T10:07:45+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type/2_unit.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:34:58+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type/3_string.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-23T10:10:52+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type/4_tuple.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:35:09+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type/5_option.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:35:15+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type/6_result.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:35:19+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type/7_generics.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:35:24+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type/8_collection.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-23T11:50:12+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type/9_type-convert.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:35:37+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type/10_type-inference.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:35:44+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type-detail/0_record.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:35:49+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type-detail/1_discriminated-unions.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:35:59+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type-detail/2_enum.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:36:04+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type-detail/3_class.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:36:16+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type-detail/4_struct.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:36:20+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type-detail/5_interface.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:32:10+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type-detail/6_abstract-class.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:36:24+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/type-detail/7_type-abbreviations.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:36:32+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/operator/0_arithmetic.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:33:53+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/operator/1_bool.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:34:00+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/operator/2_bit.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:34:09+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/operator/3_nullable.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:34:18+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/operator/4_pipeline.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:34:36+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/function/0_function1.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:32:02+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/function/1_args.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:32:27+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/function/2_higher-order.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T20:32:34+09:00</lastmod>
-</url>
-<url>
-  <loc>http://midoliy.com/content/fsharp/text/function/3_curry.html</loc>
-  <priority>0.7</priority>
-  <lastmod>2019-02-21T22:01:56+09:00</lastmod>
-</url>
-
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://midoliy.github.io/FsharpReference/post/first_content/</loc>
+    <lastmod>2019-07-22T06:43:52+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://midoliy.github.io/FsharpReference/</loc>
+    <lastmod>2019-07-22T06:43:52+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://midoliy.github.io/FsharpReference/post/</loc>
+    <lastmod>2019-07-22T06:43:52+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://midoliy.github.io/FsharpReference/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://midoliy.github.io/FsharpReference/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
 </urlset>
