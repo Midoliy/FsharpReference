@@ -22,7 +22,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 .hljs-built_in,
 .hljs-name,
 .hljs-tag {
-  color: #00f;
+  color: #02559c;
 }
 
 .hljs-string,
@@ -34,7 +34,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 .hljs-template-variable,
 .hljs-type,
 .hljs-addition {
-  color: #a31515;
+  color: #4edcaf;
 }
 
 .hljs-deletion,
